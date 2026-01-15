@@ -74,5 +74,12 @@
 	"beian": {
 		"text": "",
 		"link": ""
+	},
+	"FRIEND_LINK_CONTACT": {
+		"name": "YYsuni",
+		"email": "yysuni1001@gmail.com",
+		"url": "https://example.com",
+		"description": "YYsuni 的个人博客，记录前端开发、探索、笔记",
+		"avatar": "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5"
 	}
 }
