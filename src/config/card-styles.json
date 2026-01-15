@@ -3,16 +3,16 @@
 		"width": 360,
 		"height": 200,
 		"order": 3,
-		"offsetX": null,
-		"offsetY": null,
+		"offsetX": -177,
+		"offsetY": -336,
 		"enabled": true
 	},
 	"hiCard": {
 		"width": 360,
 		"height": 288,
 		"order": 1,
-		"offsetX": null,
-		"offsetY": null,
+		"offsetX": -171,
+		"offsetY": -119,
 		"enabled": true
 	},
 	"clockCard": {
