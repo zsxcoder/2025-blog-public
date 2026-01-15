@@ -65,9 +65,9 @@ const FriendCard: React.FC<FriendCardProps> = ({ link }) => {
             target="_blank"
             rel="noopener noreferrer"
             className={`group relative flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 
-                bg-white dark:bg-white/5 
+                bg-amber-50 dark:bg-amber-500/10 
                 hover:-translate-y-1 hover:shadow-lg
-                ${levelInfo ? levelInfo.border.replace('border-', 'border-opacity-50 hover:border-opacity-100 ') : 'border-gray-200 dark:border-white/10'}
+                ${levelInfo ? levelInfo.border.replace('border-', 'border-opacity-50 hover:border-opacity-100 ') : 'border-amber-400'}
                 overflow-hidden h-[90px]
             `}
         >
@@ -78,10 +78,10 @@ const FriendCard: React.FC<FriendCardProps> = ({ link }) => {
 
             {/* Avatar Section */}
             <div ref={imgRef} className="relative w-14 h-14 flex-shrink-0">
-                <div className={`absolute inset-0 rounded-full border-2 ${levelInfo ? `${levelInfo.border} opacity-20` : 'border-gray-200'} scale-110`} />
+                <div className={`absolute inset-0 rounded-full border-2 ${levelInfo ? `${levelInfo.border} opacity-20` : 'border-amber-400 opacity-20'} scale-110`} />
 
                 {!imageLoaded && !imageError && (
-                    <div className="absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse" />
+                    <div className="absolute inset-0 rounded-full bg-amber-200 dark:bg-amber-500/30 animate-pulse" />
                 )}
 
                 {(!imageError && shouldLoad) ? (
@@ -97,7 +97,7 @@ const FriendCard: React.FC<FriendCardProps> = ({ link }) => {
                             }`}
                     />
                 ) : imageError && (
-                    <div className="w-14 h-14 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-gray-500 z-10 relative">
+                    <div className="w-14 h-14 rounded-full bg-amber-300 dark:bg-amber-500/40 flex items-center justify-center text-amber-500 z-10 relative">
                         {link.name.charAt(0)}
                     </div>
                 )}
@@ -106,16 +106,16 @@ const FriendCard: React.FC<FriendCardProps> = ({ link }) => {
             {/* Content Section */}
             <div className="flex-grow min-w-0 z-10 h-full flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-gray-900 dark:text-white truncate">
+                    <h3 className="font-bold text-amber-500 truncate">
                         {link.name}
                     </h3>
                     {link.recommended && (
                         <div className="relative group/rec" title="推荐">
-                            <ThumbsUp size={14} className="text-[#d3bc8e]" strokeWidth={3} fill="#d3bc8e" fillOpacity={0.2} />
+                            <ThumbsUp size={14} className="text-amber-500" strokeWidth={3} fill="#d3bc8e" fillOpacity={0.2} />
                         </div>
                     )}
                 </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 leading-normal truncate">
+                <p className="text-xs text-amber-500 leading-normal truncate">
                     {link.description}
                 </p>
             </div>

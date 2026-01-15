@@ -26,7 +26,7 @@ const FriendsList: React.FC<FriendsListProps> = ({ links }) => {
 
     return (
         <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-2xl font-bold text-amber-500 mb-6">
                 友链列表 ({activeLinks.length})
             </h2>
 
@@ -42,7 +42,7 @@ const FriendsList: React.FC<FriendsListProps> = ({ links }) => {
                     <button
                         onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                         disabled={currentPage === 1}
-                        className={`p-2 rounded-lg border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+                        className={`p-2 rounded-lg border border-amber-400 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-500/10 transition-colors ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
                     >
                         <ChevronLeft size={20} />
@@ -56,8 +56,8 @@ const FriendsList: React.FC<FriendsListProps> = ({ links }) => {
                                     key={page}
                                     onClick={() => handlePageChange(page)}
                                     className={`w-8 h-8 rounded-lg text-sm font-medium transition-all ${currentPage === page
-                                            ? 'bg-gray-400 dark:bg-gray-600 text-white shadow-md scale-110'
-                                            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5'
+                                            ? 'bg-amber-500 text-white shadow-md scale-110'
+                                            : 'text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-500/10'
                                         }`}
                                 >
                                     {page}
@@ -69,7 +69,7 @@ const FriendsList: React.FC<FriendsListProps> = ({ links }) => {
                     <button
                         onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                         disabled={currentPage === totalPages}
-                        className={`p-2 rounded-lg border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+                        className={`p-2 rounded-lg border border-amber-400 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-500/10 transition-colors ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
                     >
                         <ChevronRight size={20} />

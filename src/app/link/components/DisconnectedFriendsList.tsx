@@ -34,14 +34,14 @@ const DisconnectedFriendsList: React.FC<DisconnectedFriendsListProps> = ({ links
             {/* 标题和展开按钮 */}
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <AlertCircle className="w-5 h-5 text-gray-400 dark:text-gray-500" />
-                    <h2 className="text-xl font-bold text-gray-600 dark:text-gray-400">
+                    <AlertCircle className="w-5 h-5 text-amber-500" />
+                    <h2 className="text-xl font-bold text-amber-500">
                         已失联友链 ({disconnectedLinks.length})
                     </h2>
                 </div>
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 border border-slate-200 dark:border-white/10 transition-all duration-200 hover:scale-105 active:scale-95 shadow-sm hover:shadow"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium text-amber-500 bg-amber-50 dark:bg-amber-500/10 hover:bg-amber-100 dark:hover:bg-amber-500/20 border border-amber-400 transition-all duration-200 hover:scale-105 active:scale-95 shadow-sm hover:shadow"
                     aria-label={isExpanded ? '收起失联友链列表' : '展开失联友链列表'}
                 >
                     <ChevronDown 
@@ -67,7 +67,7 @@ const DisconnectedFriendsList: React.FC<DisconnectedFriendsListProps> = ({ links
                             <button
                                 onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                                 disabled={currentPage === 1}
-                                className={`p-2 rounded-lg border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+                                className={`p-2 rounded-lg border border-amber-400 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-500/10 transition-colors ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
                                     }`}
                             >
                                 <ChevronLeft size={20} />
@@ -81,8 +81,8 @@ const DisconnectedFriendsList: React.FC<DisconnectedFriendsListProps> = ({ links
                                             key={page}
                                             onClick={() => handlePageChange(page)}
                                             className={`w-8 h-8 rounded-lg text-sm font-medium transition-all ${currentPage === page
-                                                    ? 'bg-gray-400 dark:bg-gray-600 text-white shadow-md scale-110'
-                                                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5'
+                                                    ? 'bg-amber-500 text-white shadow-md scale-110'
+                                                    : 'text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-500/10'
                                                 }`}
                                         >
                                             {page}
@@ -94,7 +94,7 @@ const DisconnectedFriendsList: React.FC<DisconnectedFriendsListProps> = ({ links
                             <button
                                 onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                                 disabled={currentPage === totalPages}
-                                className={`p-2 rounded-lg border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+                                className={`p-2 rounded-lg border border-amber-400 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-500/10 transition-colors ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
                                     }`}
                             >
                                 <ChevronRight size={20} />

@@ -37,7 +37,7 @@ const DisconnectedFriendCard: React.FC<DisconnectedFriendCardProps> = ({ link })
             target="_blank"
             rel="noopener noreferrer"
             className={`group relative flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 
-                bg-white dark:bg-white/5 
+                bg-amber-50 dark:bg-amber-500/10 
                 hover:-translate-y-1 hover:shadow-lg
                 ${levelInfo.border}
                 overflow-hidden h-[90px] grayscale opacity-80 hover:grayscale-0 hover:opacity-100
@@ -53,7 +53,7 @@ const DisconnectedFriendCard: React.FC<DisconnectedFriendCardProps> = ({ link })
                 <div className={`absolute inset-0 rounded-full border-2 ${levelInfo.border} opacity-20 scale-110`} />
 
                 {!imageLoaded && !imageError && (
-                    <div className="absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse" />
+                    <div className="absolute inset-0 rounded-full bg-amber-200 dark:bg-amber-500/30 animate-pulse" />
                 )}
 
                 {(!imageError && shouldLoad) ? (
@@ -69,7 +69,7 @@ const DisconnectedFriendCard: React.FC<DisconnectedFriendCardProps> = ({ link })
                             }`}
                     />
                 ) : imageError && (
-                    <div className="w-14 h-14 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-gray-500 z-10 relative">
+                    <div className="w-14 h-14 rounded-full bg-amber-300 dark:bg-amber-500/40 flex items-center justify-center text-amber-500 z-10 relative">
                         {link.name.charAt(0)}
                     </div>
                 )}
@@ -78,11 +78,11 @@ const DisconnectedFriendCard: React.FC<DisconnectedFriendCardProps> = ({ link })
             {/* Content Section */}
             <div className="flex-grow min-w-0 z-10 h-full flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-gray-900 dark:text-gray-400 truncate group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                    <h3 className="font-bold text-amber-500 truncate group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
                         {link.name}
                     </h3>
                 </div>
-                <p className="text-xs text-gray-400 dark:text-gray-500 leading-normal line-clamp-2 overflow-hidden text-ellipsis group-hover:text-gray-500 dark:group-hover:text-gray-400 transition-colors">
+                <p className="text-xs text-amber-500 leading-normal line-clamp-2 overflow-hidden text-ellipsis group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
                     {link.description}
                 </p>
             </div>

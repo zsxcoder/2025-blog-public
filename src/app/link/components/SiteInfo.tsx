@@ -28,14 +28,14 @@ const SiteInfo: React.FC<SiteInfoProps> = ({ name, url, description, avatar }) =
     };
 
     const InfoRow = ({ label, value, fieldId }: { label: string; value: string; fieldId: string }) => (
-        <div className="group flex items-center hover:bg-slate-100 dark:hover:bg-white/5 rounded px-2 py-1 -mx-2 transition-colors">
-            <span className="text-slate-500 dark:text-slate-400 w-16 text-sm">{label}</span>
-            <span className="text-slate-900 dark:text-white font-medium text-sm flex-1 truncate">{value}</span>
+        <div className="group flex items-center hover:bg-amber-50 dark:hover:bg-amber-500/10 rounded px-2 py-1 -mx-2 transition-colors">
+            <span className="text-amber-500 w-16 text-sm">{label}</span>
+            <span className="text-amber-500 font-medium text-sm flex-1 truncate">{value}</span>
             <button
                 onClick={() => handleCopy(value, fieldId)}
                 className={`ml-2 p-1 rounded transition-all ${copiedField === fieldId
-                        ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 opacity-100'
-                        : 'text-slate-400 hover:text-docs-accent dark:hover:text-dark-accent opacity-0 group-hover:opacity-100'
+                        ? 'bg-amber-100 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 opacity-100'
+                        : 'text-amber-500 hover:text-amber-600 dark:hover:text-amber-400 opacity-0 group-hover:opacity-100'
                     }`}
                 title="复制"
             >
@@ -45,17 +45,17 @@ const SiteInfo: React.FC<SiteInfoProps> = ({ name, url, description, avatar }) =
     );
 
     return (
-        <div className="rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 p-6">
+        <div className="rounded-2xl bg-amber-50 dark:bg-amber-500/10 border border-amber-400 p-6">
             <div className="flex items-center gap-2 mb-4">
-                <svg className="w-5 h-5 text-docs-accent dark:text-dark-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">本站信息</h3>
+                <h3 className="text-lg font-bold text-amber-500">本站信息</h3>
                 <button
                     onClick={handleCopyJSON}
                     className={`ml-auto text-xs px-2 py-1 rounded transition-colors ${copiedField === 'json'
-                            ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400'
-                            : 'bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-white/20'
+                            ? 'bg-amber-100 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400'
+                            : 'bg-amber-100 dark:bg-amber-500/10 text-amber-500 hover:bg-amber-200 dark:hover:bg-amber-500/20'}
                         }`}
                 >
                     {copiedField === 'json' ? '已复制' : 'JSON'}
