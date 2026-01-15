@@ -30,9 +30,13 @@
 		{
 			"id": "a46372ff45bc5524",
 			"url": "/images/art/a46372ff45bc5524.jpg"
+		},
+		{
+			"id": "url-1768483419014",
+			"url": "https://cdn.jsdmirror.com/gh/zsxcoder/github-img@main/img/user.avif"
 		}
 	],
-	"currentArtImageId": "cat",
+	"currentArtImageId": "url-1768483419014",
 	"backgroundImages": [
 		{
 			"id": "",
