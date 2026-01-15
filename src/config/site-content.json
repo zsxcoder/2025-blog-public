@@ -43,7 +43,7 @@
 	"socialButtons": [
 		{
 			"id": "github",
-			"type": "tg",
+			"type": "github",
 			"value": "https://github.com/zsxcoder",
 			"label": "Github",
 			"order": 3
@@ -61,13 +61,6 @@
 			"value": "3149261770@qq.com",
 			"label": "",
 			"order": 1
-		},
-		{
-			"id": "button-1768481886797",
-			"type": "qq",
-			"value": "3149261770",
-			"label": "",
-			"order": 4
 		}
 	],
 	"clockShowSeconds": false,
