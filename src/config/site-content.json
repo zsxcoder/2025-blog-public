@@ -41,13 +41,9 @@
 		{
 			"id": "",
 			"url": ""
-		},
-		{
-			"id": "url-1768483114324",
-			"url": "https://cdn.jsdmirror.com/gh/zsxcoder/github-img@main/img/background-blog-public.avif"
 		}
 	],
-	"currentBackgroundImageId": "url-1768483114324",
+	"currentBackgroundImageId": "",
 	"socialButtons": [
 		{
 			"id": "github",
