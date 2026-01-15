@@ -44,7 +44,7 @@ const DisconnectedFriendCard: React.FC<DisconnectedFriendCardProps> = ({ link })
             `}
         >
             {/* Background Decoration Pattern */}
-            <div className={`absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none ${levelInfo.theme}`}>
+            <div className={`absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none ${levelInfo.theme}`}>
                 <levelInfo.Icon size={120} />
             </div>
 
@@ -88,12 +88,12 @@ const DisconnectedFriendCard: React.FC<DisconnectedFriendCardProps> = ({ link })
             </div>
 
             {/* Ghost Stamp (Bottom Right) */}
-            <div className="absolute bottom-[-5px] right-[-5px] opacity-25 group-hover:opacity-40 transition-all duration-300 group-hover:scale-110 group-hover:rotate-[-12deg] pointer-events-none">
+            <div className="absolute bottom-[-5px] right-[-5px] opacity-35 group-hover:opacity-50 transition-all duration-300 group-hover:scale-110 group-hover:rotate-[-12deg] pointer-events-none">
                 <div className={`relative w-24 h-24 flex items-center justify-center ${levelInfo.color}`}>
                     <div className="absolute top-5 font-black tracking-widest uppercase text-[10px] opacity-100 font-serif">
                         {levelInfo.title}
                     </div>
-                    <levelInfo.Icon size={40} strokeWidth={1.5} className="currentColor opacity-60" />
+                    <levelInfo.Icon size={40} strokeWidth={3} className="currentColor opacity-80" />
                     <div className="absolute bottom-5 font-mono text-[9px] opacity-100 font-bold">
                         LOST
                     </div>
