@@ -22,8 +22,6 @@ import ShareOutlineSVG from '@/svgs/share-outline.svg'
 // import WebsiteFilledSVG from '@/svgs/website-filled.svg'
 // import WebsiteOutlineSVG from '@/svgs/website-outline.svg'
 import linkSVG from '@/svgs/link.svg'
-import ScrollOutlineSVG from '@/svgs/scroll-outline.svg'
-import ScrollFilledSVG from '@/svgs/scroll-filled.svg'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { cn } from '@/lib/utils'
@@ -38,12 +36,6 @@ const list = [
 		label: '近期文章',
 		href: '/blog'
     },
-	{
-		icon: ScrollOutlineSVG,
-		iconActive: ScrollFilledSVG,
-		label: '说说',
-		href: '/essays'
-	},
 	{
 		icon: linkSVG,
 		iconActive: linkSVG,
