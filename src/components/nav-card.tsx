@@ -24,8 +24,6 @@ import { cn } from '@/lib/utils'
 import { useSize } from '@/hooks/use-size'
 import { useConfigStore } from '@/app/(home)/stores/config-store'
 import { HomeDraggableLayer } from '@/app/(home)/home-draggable-layer'
-import ChevronDownSVG from '@/svgs/chevron-down.svg'
-import ChevronUpSVG from '@/svgs/chevron-up.svg'
 
 const list = [
 	{
@@ -74,10 +72,10 @@ export default function NavCard() {
 	const [show, setShow] = useState(false)
 	const { maxSM } = useSize()
 	const [hoveredIndex, setHoveredIndex] = useState<number>(0)
+	const [expanded, setExpanded] = useState(false)
 	const { siteContent, cardStyles } = useConfigStore()
 	const styles = cardStyles.navCard
 	const hiCardStyles = cardStyles.hiCard
-	const [isExpanded, setIsExpanded] = useState(false)
 
 	const activeIndex = useMemo(() => {
 		const index = list.findIndex(item => pathname === item.href)
@@ -113,8 +111,8 @@ export default function NavCard() {
 	const size = useMemo(() => {
 		if (form === 'mini') return { width: 64, height: 64 }
 		else if (form === 'icons') return { width: 340, height: 64 }
-		else return { width: styles.width, height: isExpanded ? styles.height + (list.length - 5) * (itemHeight + 8) : styles.height }
-	}, [form, styles, isExpanded])
+		else return { width: styles.width, height: styles.height }
+	}, [form, styles])
 
 	useEffect(() => {
 		if (form === 'icons' && activeIndex !== undefined && hoveredIndex !== activeIndex) {
@@ -127,19 +125,21 @@ export default function NavCard() {
 
 	if (maxSM) position = { x: center.x - size.width / 2, y: 16 }
 
-	// 确定显示的链接数量
-	const visibleLinks = maxSM ? (isExpanded ? list : list.slice(0, 5)) : list
+	// 将导航链接分为主要链接（前5个）和次要链接
+	const mainLinks = list.slice(0, 5)
+	const secondaryLinks = list.slice(5)
+	const hasSecondaryLinks = secondaryLinks.length > 0
 
 	if (show)
 		return (
-			<HomeDraggableLayer cardKey='navCard' x={position.x} y={position.y} width={styles.width} height={isExpanded ? styles.height + (list.length - 5) * (itemHeight + 8) : styles.height}>
+			<HomeDraggableLayer cardKey='navCard' x={position.x} y={position.y} width={styles.width} height={styles.height}>
 				<Card
 					order={styles.order}
 					width={size.width}
 					height={size.height}
 					x={position.x}
 					y={position.y}
-					className={clsx(form != 'full' && 'overflow-hidden', form === 'mini' && 'p-3', form === 'icons' && 'flex flex-col sm:flex-row items-center gap-6 p-3')}>
+					className={clsx(form != 'full' && 'overflow-hidden', form === 'mini' && 'p-3', form === 'icons' && 'flex items-center gap-2 p-3')}>
 					{form === 'full' && siteContent.enableChristmas && (
 						<>
 							<img
@@ -151,7 +151,8 @@ export default function NavCard() {
 						</>
 					)}
 
-					<Link className='flex items-center gap-3' href='/'>
+					{/* 头像始终显示 */}
+					<Link className='flex items-center gap-3 z-10' href='/'>
 						<Image src='/images/avatar.png' alt='avatar' width={40} height={40} style={{ boxShadow: ' 0 12px 20px -5px #E2D9CE' }} className='rounded-full' />
 						{form === 'full' && <span className='font-averia mt-1 text-2xl leading-none font-medium'>{siteContent.meta.title}</span>}
 						{form === 'full' && <span className='text-brand mt-2 text-xs font-medium'>(开发中)</span>}
@@ -161,7 +162,7 @@ export default function NavCard() {
 						<>
 							{form !== 'icons' && <div className='text-secondary mt-6 text-sm uppercase'>General</div>}
 
-							<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-0 flex items-center gap-6 space-y-0')}>
+							<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-0 flex items-center gap-2 space-y-0')}>
 								<motion.div
 									className='absolute max-w-[230px] rounded-full border'
 									layoutId='nav-hover'
@@ -169,7 +170,7 @@ export default function NavCard() {
 									animate={
 										form === 'icons'
 											? {
-													left: hoveredIndex * (itemHeight + 24) - extraSize,
+													left: hoveredIndex * (itemHeight + 20) - extraSize,
 													top: -extraSize,
 													width: itemHeight + extraSize * 2,
 													height: itemHeight + extraSize * 2
@@ -184,7 +185,8 @@ export default function NavCard() {
 									style={{ backgroundImage: 'linear-gradient(to right bottom, var(--color-border) 60%, var(--color-card) 100%)' }}
 								/>
 
-								{visibleLinks.map((item, index) => (
+								{/* 渲染主要链接 */}
+								{mainLinks.map((item, index) => (
 									<Link
 										key={item.href}
 										href={item.href}
@@ -197,35 +199,41 @@ export default function NavCard() {
 									</Link>
 								))}
 
-								{/* 手机端展开/折叠按钮 */}
-								{maxSM && list.length > 5 && (
-									<motion.button
-										onClick={() => setIsExpanded(!isExpanded)}
-										className='text-secondary relative z-10 flex items-center justify-center rounded-full p-3 transition-colors hover:text-primary'
-										onMouseEnter={() => setHoveredIndex(visibleLinks.length)}
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										transition={{ duration: 0.2 }}
-									>
+								{/* 展开/折叠按钮 */}
+								{hasSecondaryLinks && (
+									<Link
+										href='#'
+										className={cn('text-secondary text-md relative z-10 flex items-center gap-3 rounded-full px-5 py-3', form === 'icons' && 'p-0')}
+										onMouseEnter={() => setHoveredIndex(mainLinks.length)}
+										onClick={(e) => {
+											e.preventDefault()
+											setExpanded(!expanded)
+										}}>
 										<div className='flex h-7 w-7 items-center justify-center'>
-											{isExpanded ? <ChevronUpSVG className='h-7 w-7' /> : <ChevronDownSVG className='h-7 w-7' />}
+											{/* 使用分享图标作为展开/折叠按钮 */}
+											<ShareOutlineSVG className='text-brand absolute h-7 w-7' />
 										</div>
-									</motion.button>
+										{form !== 'icons' && <span className={clsx(hoveredIndex == mainLinks.length && 'text-primary font-medium')}>{expanded ? '收起' : '展开'}</span>}
+									</Link>
 								)}
 							</div>
 
-							{/* 电脑端首页折叠按钮 */}
-							{form === 'full' && list.length > 5 && (
-								<motion.button
-									onClick={() => setIsExpanded(!isExpanded)}
-									className='mt-4 flex items-center gap-2 text-sm text-secondary transition-colors hover:text-primary'
-									initial={{ opacity: 0, y: -10 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.3 }}
-								>
-									{isExpanded ? <ChevronUpSVG className='h-4 w-4' /> : <ChevronDownSVG className='h-4 w-4' />}
-									<span>{isExpanded ? '收起' : '展开'}更多链接</span>
-								</motion.button>
+							{/* 展开的次要链接 */}
+							{expanded && hasSecondaryLinks && (
+								<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-3 flex items-center gap-6 space-y-0')}>
+									{secondaryLinks.map((item, index) => (
+										<Link
+											key={item.href}
+											href={item.href}
+											className={cn('text-secondary text-md relative z-10 flex items-center gap-3 rounded-full px-5 py-3', form === 'icons' && 'p-0')}
+											onMouseEnter={() => setHoveredIndex(mainLinks.length + 1 + index)}>
+											<div className='flex h-7 w-7 items-center justify-center'>
+												<item.icon className='absolute h-7 w-7' />
+											</div>
+											{form !== 'icons' && <span className={clsx('text-primary font-medium')}>{item.label}</span>}
+										</Link>
+									))}
+								</div>
 							)}
 						</>
 					)}
