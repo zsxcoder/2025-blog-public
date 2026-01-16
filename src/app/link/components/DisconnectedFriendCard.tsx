@@ -69,7 +69,7 @@ const DisconnectedFriendCard: React.FC<DisconnectedFriendCardProps> = ({ link })
                             }`}
                     />
                 ) : imageError && (
-                    <div className="w-14 h-14 rounded-full bg-teal-300 dark:bg-teal-500/40 flex items-center justify-center text-teal-500 z-10 relative"/>
+                    <div className="w-14 h-14 rounded-full bg-teal-300 dark:bg-teal-500/40 flex items-center justify-center text-teal-500 z-10 relative">
                         {link.name.charAt(0)}
                     </div>
                 )}
@@ -78,11 +78,11 @@ const DisconnectedFriendCard: React.FC<DisconnectedFriendCardProps> = ({ link })
             {/* Content Section */}
             <div className="flex-grow min-w-0 z-10 h-full flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-teal-500 truncate group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors"/>
+                    <h3 className="font-bold text-teal-500 truncate group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                         {link.name}
                     </h3>
                 </div>
-                <p className="text-xs text-teal-500 leading-normal line-clamp-2 overflow-hidden text-ellipsis group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors"/>
+                <p className="text-xs text-teal-500 leading-normal line-clamp-2 overflow-hidden text-ellipsis group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                     {link.description}
                 </p>
             </div>

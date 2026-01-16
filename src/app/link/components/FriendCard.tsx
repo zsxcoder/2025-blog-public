@@ -97,7 +97,7 @@ const FriendCard: React.FC<FriendCardProps> = ({ link }) => {
                             }`}
                     />
                 ) : imageError && (
-                    <div className="w-14 h-14 rounded-full bg-teal-300 dark:bg-teal-500/40 flex items-center justify-center text-teal-500 z-10 relative"/>
+                    <div className="w-14 h-14 rounded-full bg-teal-300 dark:bg-teal-500/40 flex items-center justify-center text-teal-500 z-10 relative">
                         {link.name.charAt(0)}
                     </div>
                 )}

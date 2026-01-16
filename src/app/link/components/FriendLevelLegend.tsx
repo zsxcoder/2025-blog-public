@@ -29,7 +29,7 @@ const FriendLevelLegend: React.FC = () => {
                             const dayRange = isLast ? `${level.days}天+` : `${prevDays}-${level.days}天`;
                             
                             return (
-                                <div key={level.level}<div className="flex items-center gap-2 p-2 rounded-lg border border-transparent hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-colors cursor-default">
+                                <div key={level.level} className="flex items-center gap-2 p-2 rounded-lg border border-transparent hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-colors cursor-default">
                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-teal-50 dark:bg-teal-500/20 ${level.theme}`}>
                                         <level.Icon size={16} />
                                     </div>
