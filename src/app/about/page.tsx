@@ -162,7 +162,9 @@ export default function Page() {
 								<p className='text-secondary text-lg'>{data.description}</p>
 							</motion.div>
 
-                            <AuthorCard />
+                            <div className="mb-8">
+                                <AuthorCard />
+                            </div>
 
 							{loading ? (
 								<div className='text-secondary text-center'>加载中...</div>
@@ -176,7 +178,7 @@ export default function Page() {
 
 					<div className='mt-8 flex items-center justify-center gap-6'>
 						<motion.a
-							href='https://github.com/YYsuni/2025-blog-public'
+							href='https://github.com/zsxcoder/2025-blog-public'
 							target='_blank'
 							rel='noreferrer'
 							initial={{ opacity: 0, scale: 0.6 }}

@@ -188,12 +188,56 @@ export default function AuthorCard({ className = '', title, showLicense = false,
 
             {/* Left Decor / Avatar Section */}
             <div className="relative md:w-64 shrink-0 bg-[#f9fafb]/80 flex flex-col items-center justify-between pt-8 px-8 pb-4 border-b md:border-b-0 md:border-r border-[#d3bc8e]/20 z-10 group/pisces">
-                {/* Constellation BG */}
-                <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
-                    <svg className="absolute -top-10 -left-10 w-48 h-48 text-[#d3bc8e]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.5">
-                        <circle cx="50" cy="50" r="40" strokeDasharray="4 4" />
-                        <circle cx="50" cy="50" r="2" fill="currentColor" />
-                    </svg>
+                {/* Leo Constellation Pattern as Background - Genshin Style */}
+                <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">
+                    <div className="relative w-full h-full max-w-[280px] max-h-[280px] opacity-25">
+                        {/* 光晕效果 - 使用径向渐变 */}
+                        <div 
+                            className="absolute inset-0 blur-2xl rounded-full"
+                            style={{
+                                background: 'radial-gradient(circle, rgba(211, 188, 142, 0.15) 0%, rgba(211, 188, 142, 0.05) 50%, transparent 100%)'
+                            }}
+                        ></div>
+                        
+                        <svg 
+                            className="w-full h-full relative z-10" 
+                            viewBox="0 0 24 24" 
+                            fill="none"
+                            preserveAspectRatio="xMidYMid meet"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            {/* 定义金色渐变（用于填充） */}
+                            <defs>
+                                <linearGradient id="leo-gold-light" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#f4e4bc" stopOpacity="0.9" />
+                                    <stop offset="50%" stopColor="#d3bc8e" stopOpacity="1" />
+                                    <stop offset="100%" stopColor="#a38753" stopOpacity="0.8" />
+                                </linearGradient>
+                                {/* 光晕滤镜 */}
+                                <filter id="leo-glow">
+                                    <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            
+                            {/* 狮子座图案 */}
+                            <g fill-rule="evenodd">
+                                <path d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z" 
+                                      fill="url(#leo-gold-light)" 
+                                      filter="url(#leo-glow)"
+                                      opacity="0.85"
+                                />
+                                <path d="M13.5 5A3.5 3.5 0 0 0 10 8.5c0 .223.058.515.185.94c.057.193.123.395.196.62l.018.056q.122.367.248.79c.328 1.116.615 2.506.352 4.18a4 4 0 1 1-2.298-3.707a30 30 0 0 0-.223-.704c-.072-.22-.145-.445-.21-.663C8.13 9.548 8 9.027 8 8.5a5.5 5.5 0 1 1 11 0c0 .957-.315 1.92-.713 2.808c-.401.894-.93 1.8-1.427 2.64l-.133.224c-.459.773-.88 1.484-1.202 2.147C15.165 17.061 15 17.61 15 18a2 2 0 1 0 4 0a1 1 0 1 1 2 0a4 4 0 0 1-8 0c0-.86.335-1.749.725-2.553c.36-.744.827-1.53 1.276-2.285l.139-.234c.502-.848.974-1.662 1.323-2.439c.352-.785.537-1.446.537-1.989C17 6.563 15.434 5 13.5 5M7 13a2 2 0 1 0 0 4a2 2 0 0 0 0-4" 
+                                      fill="url(#leo-gold-light)" 
+                                      filter="url(#leo-glow)"
+                                      opacity="0.85"
+                                />
+                            </g>
+                        </svg>
+                    </div>
                 </div>
 
                 {/* Top Section: Avatar & Name */}
