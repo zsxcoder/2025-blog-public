@@ -25,8 +25,8 @@ interface FriendCircleProps {
 const FriendCircle: React.FC<FriendCircleProps> = () => {
   // 配置选项
   const UserConfig = {
-    private_api_url: 'https://moments.myxz.top/',
-    page_turning_number: 20,
+    private_api_url: 'https://fc.mcyzsx.top/',
+    page_turning_number: 15,
     error_img: "https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite@latest/static/favicon.ico"
   }
 
