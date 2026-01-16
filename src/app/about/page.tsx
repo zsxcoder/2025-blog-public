@@ -12,6 +12,8 @@ import GithubSVG from '@/svgs/github.svg'
 import { GiscusComments } from '@/components/giscus-comments'
 import initialData from './list.json'
 
+import AuthorCard from '@/components/AuthorCard'
+
 export default function Page() {
 	const [data, setData] = useState<AboutData>(initialData as AboutData)
 	const [originalData, setOriginalData] = useState<AboutData>(initialData as AboutData)
@@ -141,6 +143,8 @@ export default function Page() {
 									/>
 								</div>
 
+								<AuthorCard />
+
 								<div className='card relative'>
 									<textarea
 										placeholder='Markdown 内容'
@@ -153,6 +157,7 @@ export default function Page() {
 						)
 					) : (
 						<>
+							<AuthorCard />
 							<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className='mb-12 text-center'>
 								<h1 className='mb-4 text-4xl font-bold'>{data.title}</h1>
 								<p className='text-secondary text-lg'>{data.description}</p>
