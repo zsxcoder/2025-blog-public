@@ -18,7 +18,6 @@ import ShareOutlineSVG from '@/svgs/share-outline.svg'
 import WebsiteFilledSVG from '@/svgs/website-filled.svg'
 import WebsiteOutlineSVG from '@/svgs/website-outline.svg'
 import linkSVG from '@/svgs/link.svg'
-import DotsSVG from '@/svgs/dots.svg'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { cn } from '@/lib/utils'
@@ -61,7 +60,7 @@ const list = [
 		icon: linkSVG,
 		iconActive: linkSVG,
 		label: '外部链接',
-		href: '/link'
+		href: '/links'
 	}
 ]
 
@@ -76,7 +75,7 @@ export default function NavCard() {
 	const { siteContent, cardStyles } = useConfigStore()
 	const styles = cardStyles.navCard
 	const hiCardStyles = cardStyles.hiCard
-	const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false)
+	const [showMore, setShowMore] = useState(false)
 
 	const activeIndex = useMemo(() => {
 		const index = list.findIndex(item => pathname === item.href)
@@ -95,6 +94,10 @@ export default function NavCard() {
 	if (maxSM) form = 'icons'
 
 	const itemHeight = form === 'full' ? 52 : 28
+	const MAX_VISIBLE_ITEMS = 5
+	const hasMoreItems = list.length > MAX_VISIBLE_ITEMS
+	const visibleItems = hasMoreItems && maxSM && !showMore ? list.slice(0, MAX_VISIBLE_ITEMS) : list
+	const hiddenItems = hasMoreItems && maxSM ? list.slice(MAX_VISIBLE_ITEMS) : []
 
 	let position = useMemo(() => {
 		if (form === 'full') {
@@ -111,9 +114,16 @@ export default function NavCard() {
 
 	const size = useMemo(() => {
 		if (form === 'mini') return { width: 64, height: 64 }
-		else if (form === 'icons') return { width: 420, height: 64 }
+		else if (form === 'icons') {
+			// 动态计算宽度，确保头像和导航项都能显示
+			const baseWidth = 340
+			const itemWidth = itemHeight + 24
+			const avatarWidth = 40
+			const totalWidth = avatarWidth + 24 + (visibleItems.length + (hasMoreItems && maxSM ? 1 : 0)) * itemWidth
+			return { width: Math.max(baseWidth, totalWidth), height: 64 }
+		}
 		else return { width: styles.width, height: styles.height }
-	}, [form, styles])
+	}, [form, styles, itemHeight, visibleItems.length, hasMoreItems, maxSM])
 
 	useEffect(() => {
 		if (form === 'icons' && activeIndex !== undefined && hoveredIndex !== activeIndex) {
@@ -126,11 +136,6 @@ export default function NavCard() {
 
 	if (maxSM) position = { x: center.x - size.width / 2, y: 16 }
 
-	// 分割导航链接，前5个直接显示，其余通过展开按钮显示
-	const visibleLinks = list.slice(0, 5)
-	const moreLinks = list.slice(5)
-	const hasMoreLinks = moreLinks.length > 0
-
 	if (show)
 		return (
 			<HomeDraggableLayer cardKey='navCard' x={position.x} y={position.y} width={styles.width} height={styles.height}>
@@ -140,7 +145,7 @@ export default function NavCard() {
 					height={size.height}
 					x={position.x}
 					y={position.y}
-					className={clsx(form != 'full' && 'overflow-hidden', form === 'mini' && 'p-3', form === 'icons' && 'flex items-center gap-2 p-3')}>
+					className={clsx(form != 'full' && 'overflow-hidden', form === 'mini' && 'p-3', form === 'icons' && 'flex items-center gap-6 p-3')}>
 					{form === 'full' && siteContent.enableChristmas && (
 						<>
 							<img
@@ -152,7 +157,8 @@ export default function NavCard() {
 						</>
 					)}
 
-					<Link className='flex-shrink-0 flex items-center gap-3' href='/'>
+					{/* 确保头像始终显示 */}
+					<Link className='flex items-center gap-3' href='/'>
 						<Image src='/images/avatar.png' alt='avatar' width={40} height={40} style={{ boxShadow: ' 0 12px 20px -5px #E2D9CE' }} className='rounded-full' />
 						{form === 'full' && <span className='font-averia mt-1 text-2xl leading-none font-medium'>{siteContent.meta.title}</span>}
 						{form === 'full' && <span className='text-brand mt-2 text-xs font-medium'>(开发中)</span>}
@@ -162,7 +168,7 @@ export default function NavCard() {
 						<>
 							{form !== 'icons' && <div className='text-secondary mt-6 text-sm uppercase'>General</div>}
 
-							<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-0 flex items-center gap-2 space-y-0')}>
+							<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-0 flex items-center gap-6 space-y-0')}>
 								<motion.div
 									className='absolute max-w-[230px] rounded-full border'
 									layoutId='nav-hover'
@@ -170,7 +176,7 @@ export default function NavCard() {
 									animate={
 										form === 'icons'
 											? {
-													left: hoveredIndex * (itemHeight + 24) - extraSize + 60,
+													left: hoveredIndex * (itemHeight + 24) - extraSize,
 													top: -extraSize,
 													width: itemHeight + extraSize * 2,
 													height: itemHeight + extraSize * 2
@@ -185,14 +191,12 @@ export default function NavCard() {
 									style={{ backgroundImage: 'linear-gradient(to right bottom, var(--color-border) 60%, var(--color-card) 100%)' }}
 								/>
 
-								{/* 显示前5个导航链接 */}
-								{visibleLinks.map((item, index) => (
+								{visibleItems.map((item, index) => (
 									<Link
 										key={item.href}
 										href={item.href}
 										className={cn('text-secondary text-md relative z-10 flex items-center gap-3 rounded-full px-5 py-3', form === 'icons' && 'p-0')}
-										onMouseEnter={() => setHoveredIndex(index)}
-									>
+										onMouseEnter={() => setHoveredIndex(index)}>
 										<div className='flex h-7 w-7 items-center justify-center'>
 											{hoveredIndex == index ? <item.iconActive className='text-brand absolute h-7 w-7' /> : <item.icon className='absolute h-7 w-7' />}
 										</div>
@@ -200,38 +204,56 @@ export default function NavCard() {
 									</Link>
 								))}
 
-								{/* 更多链接按钮 */}
-								{hasMoreLinks && (
-									<div className="relative">
-										<button
-											className={cn('text-secondary text-md relative z-10 flex items-center gap-3 rounded-full px-5 py-3', form === 'icons' && 'p-0')}
-											onMouseEnter={() => setHoveredIndex(visibleLinks.length)}
-											onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+								{/* 手机端展开/收起按钮 */}
+								{hasMoreItems && maxSM && (
+									<motion.button
+										type='button'
+										className='text-secondary text-md relative z-10 flex h-7 w-7 items-center justify-center rounded-full'
+										onClick={() => setShowMore(!showMore)}
+										onMouseEnter={() => setHoveredIndex(visibleItems.length)}
+										whileHover={{ scale: 1.1 }}
+										whileTap={{ scale: 0.95 }}
+									>
+										<svg
+											className='h-5 w-5 transition-transform duration-300'
+											fill='none'
+											stroke='currentColor'
+											viewBox='0 0 24 24'
+											strokeWidth={2}
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											style={{ transform: showMore ? 'rotate(180deg)' : 'rotate(0)' }}
 										>
-											<div className='flex h-7 w-7 items-center justify-center'>
-										<DotsSVG className='absolute h-7 w-7' />
-									</div>
-											{form !== 'icons' && <span className={clsx(hoveredIndex == visibleLinks.length && 'text-primary font-medium')}>更多</span>}
-										</button>
-
-										{isMoreMenuOpen && (
-											<div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-50">
-											{moreLinks.map((item, index) => (
-												<Link
-													key={item.href}
-													href={item.href}
-													className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-													onClick={() => setIsMoreMenuOpen(false)}
-												>
-													<item.icon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-													<span className="text-gray-700 dark:text-gray-300">{item.label}</span>
-												</Link>
-											))}
-											</div>
-										)}
-									</div>
+											<path d='M6 9l6 6 6-6' />
+										</svg>
+									</motion.button>
 								)}
 							</div>
+
+							{/* 手机端展开的更多链接 */}
+							{showMore && hiddenItems.length > 0 && maxSM && (
+								<motion.div
+									className='absolute left-0 top-full mt-2 flex flex-col items-center gap-2 rounded-lg border bg-card p-3 shadow-lg'
+									initial={{ opacity: 0, y: -10, scale: 0.95 }}
+									animate={{ opacity: 1, y: 0, scale: 1 }}
+									exit={{ opacity: 0, y: -10, scale: 0.95 }}
+									transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+								>
+									{hiddenItems.map((item, index) => (
+										<Link
+											key={item.href}
+											href={item.href}
+											className='text-secondary text-md flex items-center gap-3 rounded-full px-5 py-3 hover:bg-primary/10 transition-colors'
+											onClick={() => setShowMore(false)}
+										>
+											<div className='flex h-7 w-7 items-center justify-center'>
+												<item.icon className='h-7 w-7' />
+											</div>
+											<span>{item.label}</span>
+										</Link>
+									))}
+								</motion.div>
+							)}
 						</>
 					)}
 				</Card>
