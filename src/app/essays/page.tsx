@@ -82,7 +82,7 @@ export default function EssaysPage() {
       return getPendingTargets()
     }
 
-    // 瀑布流布局函数
+    // 瀑布流布局函数 - 强制三行
     const waterfallLayout = (container: HTMLElement) => {
       if (!container) return
       
@@ -91,26 +91,33 @@ export default function EssaysPage() {
 
       container.style.position = 'relative'
       items.forEach(item => {
-        item.style.position = 'absolute'
+        const htmlItem = item as HTMLElement
+        htmlItem.style.position = 'absolute'
       })
 
-      const columnWidth = items[0].clientWidth + 12 // 12px margin
+      // 强制使用三列布局
+      const columns = 3
       const containerWidth = container.clientWidth
-      const columns = Math.max(1, Math.floor(containerWidth / columnWidth))
+      const gap = 12 // 间距
+      const columnWidth = (containerWidth - (columns - 1) * gap) / columns
       
       const columnHeights: number[] = Array(columns).fill(0)
       const columnPositions: number[] = Array(columns).fill(0)
       
       for (let i = 0; i < columns; i++) {
-        columnPositions[i] = i * (columnWidth + 9) // 9px margin right
+        columnPositions[i] = i * (columnWidth + gap)
       }
 
       items.forEach((item, index) => {
-        const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights))
-        item.style.top = `${columnHeights[shortestColumn]}px`
-        item.style.left = `${columnPositions[shortestColumn]}px`
+        const htmlItem = item as HTMLElement
+        // 设置固定宽度
+        htmlItem.style.width = `${columnWidth}px`
         
-        columnHeights[shortestColumn] += item.clientHeight + 12 // 12px margin bottom
+        const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights))
+        htmlItem.style.top = `${columnHeights[shortestColumn]}px`
+        htmlItem.style.left = `${columnPositions[shortestColumn]}px`
+        
+        columnHeights[shortestColumn] += htmlItem.clientHeight + gap // gap margin bottom
       })
 
       container.style.height = `${Math.max(...columnHeights)}px`
@@ -223,14 +230,15 @@ export default function EssaysPage() {
       // 处理Markdown分隔线 ---
       content = content.replace(/---/g, '<hr class="markdown-separator">')
       
-      // 处理图片
+      // 处理图片 - 支持灯箱
       if (Array.isArray(item.image) && item.image.length > 0) {
         const imgDiv = document.createElement('div')
         imgDiv.className = 'zone_imgbox'
         item.image.forEach((img: string) => {
           const imgTag = document.createElement('img')
           imgTag.src = img.trim()
-          imgTag.className = 'zoomable'
+          imgTag.className = 'zoomable cursor-zoom-in'
+          imgTag.setAttribute('data-zoomable', 'true')
           imgDiv.appendChild(imgTag)
         })
         content += imgDiv.outerHTML
@@ -329,63 +337,156 @@ export default function EssaysPage() {
     fetchAndRenderTGMessages()
   }
 
+  // 灯箱状态
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [currentImage, setCurrentImage] = useState('')
+  const lightboxRef = useRef<HTMLDivElement>(null)
+
+  // 打开灯箱
+  const openLightbox = (imageSrc: string) => {
+    setCurrentImage(imageSrc)
+    setLightboxOpen(true)
+    document.body.style.overflow = 'hidden'
+  }
+
+  // 关闭灯箱
+  const closeLightbox = () => {
+    setLightboxOpen(false)
+    document.body.style.overflow = ''
+  }
+
+  // 灯箱点击事件处理
+  const handleLightboxClick = (e: React.MouseEvent) => {
+    if (e.target === lightboxRef.current) {
+      closeLightbox()
+    }
+  }
+
+  // 键盘事件处理
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && lightboxOpen) {
+        closeLightbox()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lightboxOpen])
+
+  // 初始化图片点击事件
   useEffect(() => {
     renderTGMessages()
+
+    // 为图片添加点击事件
+    const addImageClickEvents = () => {
+      const images = document.querySelectorAll('.zoomable')
+      images.forEach(img => {
+        img.addEventListener('click', () => {
+          if (img instanceof HTMLImageElement) {
+            openLightbox(img.src)
+          }
+        })
+      })
+    }
+
+    // 初始添加事件
+    addImageClickEvents()
+
+    // 监听新图片加载完成后添加事件
+    const observer = new MutationObserver(() => {
+      addImageClickEvents()
+    })
+
+    if (talkContainerRef.current) {
+      observer.observe(talkContainerRef.current, { childList: true, subtree: true })
+    }
 
     return () => {
       if (cleanupRef.current) {
         cleanupRef.current()
       }
+      observer.disconnect()
     }
   }, [])
 
   return (
-    <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 pb-12">
-      {/* 页面标题 */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: INIT_DELAY, duration: 0.5 }}
-        className="mb-12 text-center"
-      >
-        <h1 className="text-4xl font-bold mb-4">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand to-brand-secondary">
-            我的说说
-          </span>
-        </h1>
-        <p className="text-secondary max-w-2xl mx-auto">
-          记录生活中的点滴，分享我的想法和感悟
-        </p>
-      </motion.div>
+    <>
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 pb-12">
+        {/* 页面标题 */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: INIT_DELAY, duration: 0.5 }}
+          className="mb-12 text-center"
+        >
+          <h1 className="text-4xl font-bold mb-4">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand to-brand-secondary">
+              我的说说
+            </span>
+          </h1>
+          <p className="text-secondary max-w-2xl mx-auto">
+            记录生活中的点滴，分享我的想法和感悟
+          </p>
+        </motion.div>
 
-      {/* Telegram 频道介绍 */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: INIT_DELAY + ANIMATION_DELAY, duration: 0.5 }}
-        className="mb-8 rounded-2xl bg-card/80 backdrop-blur-sm border p-6 text-center"
-      >
-        <p className="text-sm text-secondary">
-          实时同步 Telegram 频道消息
-        </p>
-      </motion.div>
+        {/* Telegram 频道介绍 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: INIT_DELAY + ANIMATION_DELAY, duration: 0.5 }}
+          className="mb-8 rounded-2xl bg-card/80 backdrop-blur-sm border p-6 text-center"
+        >
+          <p className="text-sm text-secondary">
+            实时同步 Telegram 频道消息
+          </p>
+        </motion.div>
 
-      {/* 说说内容区域 */}
-      <div className="rounded-2xl bg-card/80 backdrop-blur-sm border p-8">
-        {loading && (
-          <div className="flex h-64 items-center justify-center">
-            <div className="text-secondary text-sm">加载中...</div>
-          </div>
-        )}
-        <div 
-          ref={talkContainerRef} 
-          id="talk" 
-          className={cn("talk-pending", {
-            'opacity-100': !loading,
-            'opacity-70': loading
-          })}
-        ></div>
+        {/* 说说内容区域 */}
+        <div className="rounded-2xl bg-card/80 backdrop-blur-sm border p-8">
+          {loading && (
+            <div className="flex h-64 items-center justify-center">
+              <div className="text-secondary text-sm">加载中...</div>
+            </div>
+          )}
+          <div 
+            ref={talkContainerRef} 
+            id="talk" 
+            className={cn("talk-pending", {
+              'opacity-100': !loading,
+              'opacity-70': loading
+            })}
+          ></div>
+        </div>
       </div>
-    </div>
+
+      {/* 灯箱组件 */}
+      {lightboxOpen && (
+        <motion.div
+          ref={lightboxRef}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={handleLightboxClick}
+        >
+          <div className="relative max-w-[90vw] max-h-[90vh]">
+            <button
+              className="absolute -top-12 right-0 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 transition-colors"
+              onClick={closeLightbox}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <img
+              src={currentImage}
+              alt="放大图片"
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            />
+          </div>
+        </motion.div>
+      )}
+    </>
   )
 }

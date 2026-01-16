@@ -1,52 +1,40 @@
 /* eslint-disable */
-:root {
-    --liushen-card-bg: #fff;
-    --liushen-card-border: 1px solid rgba(194, 166, 97, 0.15);
-    --card-box-shadow: 0 4px 10px rgba(194, 166, 97, 0.08);
-    --card-hover-box-shadow: 0 6px 12px rgba(194, 166, 97, 0.15);
-    --liushen-card-secondbg: rgba(194, 166, 97, 0.05);
-    --liushen-button-hover-bg: #C2A661;
-    --liushen-text: #4c4948;
-    --liushen-button-bg: rgba(194, 166, 97, 0.08);
-    --liushen-fancybox-bg: rgba(255, 255, 255, 0.7);
-    --liushen-link-color: #C2A661;
-    --liushen-link-hover-color: #EEDC82;
-}
-
-html.dark, [data-theme=dark] {
-    --liushen-card-bg: #1a1a1a;
-    --liushen-card-secondbg: rgba(0, 102, 204, 0.1);
-    --liushen-card-border: 1px solid rgba(0, 102, 204, 0.2);
-    --card-box-shadow: 0 4px 10px rgba(0, 102, 204, 0.1);
-    --card-hover-box-shadow: 0 6px 12px rgba(0, 102, 204, 0.2);
-    --liushen-button-bg: rgba(0, 102, 204, 0.15);
-    --liushen-button-hover-bg: #0066cc;
-    --liushen-text: rgba(255, 255, 255, 0.8);
-    --liushen-fancybox-bg: rgba(0, 0, 0, 0.7);
-    --liushen-link-color: #3399ff;
-    --liushen-link-hover-color: #66b3ff;
-}
-
-/* 卡片初始化 */
+/* 液态玻璃样式 */
 #talk .talk_item {
-    width: calc(33.333% - 6px);
-    background: var(--liushen-card-bg);
-    border: var(--liushen-card-border);
-    box-shadow: var(--card-box-shadow);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
     transition: all .3s ease-in-out;
-    border-radius: 12px;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    margin-bottom: 12px;
-    margin-right: 9px;
     position: relative;
     overflow: hidden;
 }
+
+/* 深色模式液态玻璃样式 */
+.dark #talk .talk_item {
+    background: rgba(17, 24, 39, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
 #talk .talk_item:hover {
-    box-shadow: var(--card-hover-box-shadow);
-    transform: translateY(-3px);
-    border-color: rgba(194, 166, 97, 0.9);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 深色模式hover效果 */
+.dark #talk .talk_item:hover {
+    background: rgba(17, 24, 39, 0.6);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 @media (max-width: 900px) {
@@ -132,40 +120,39 @@ html.dark, [data-theme=dark] {
 #talk .talk_item .talk_content .zone_imgbox {
     display: flex;
     flex-wrap: wrap;
-    --w: calc(25% - 8px);
-    gap: 10px;
-    margin-top: 10px;
-}
-#talk .talk_item .talk_content .zone_imgbox a {
-    display: block;
-    border-radius: 12px;
-    width: var(--w);
-    aspect-ratio: 1/1;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-#talk .talk_item .talk_content .zone_imgbox a:hover {
-    transform: scale(1.03);
-}
-#talk .talk_item .talk_content .zone_imgbox a:first-child {
-    width: 100%;
-    aspect-ratio: 1.8;
+    gap: 8px;
+    margin-top: 12px;
 }
 #talk .talk_item .talk_content .zone_imgbox img {
-    border-radius: 15px;
+    border-radius: 12px;
     width: 100%;
-    height: 100%;
+    height: auto;
     margin: 0 !important;
-    object-fit: contain;
-    transition: all 0.5s ease;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
-    border: 2px dashed rgba(194, 166, 97, 0.5);
+    object-fit: cover;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: zoom-in;
 }
 #talk .talk_item .talk_content .zone_imgbox img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(194, 166, 97, 0.8);
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 适配液态玻璃样式的图片容器 */
+#talk .talk_item .talk_content .zone_imgbox {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 8px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 深色模式图片容器 */
+.dark #talk .talk_item .talk_content .zone_imgbox {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
 }
 /* 底部 */
 #talk .talk_item .talk_bottom {
