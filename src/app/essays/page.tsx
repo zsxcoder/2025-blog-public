@@ -6,6 +6,7 @@ import { ANIMATION_DELAY, INIT_DELAY } from '@/consts'
 import { useConfigStore } from '@/app/(home)/stores/config-store'
 import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
+import { TalkLoading } from './components/TalkLoading'
 
 export default function EssaysPage() {
   const { siteContent } = useConfigStore()
@@ -444,17 +445,13 @@ export default function EssaysPage() {
 
         {/* 说说内容区域 */}
         <div className="rounded-2xl bg-card/80 backdrop-blur-sm border p-8">
-          {loading && (
-            <div className="flex h-64 items-center justify-center">
-              <div className="text-secondary text-sm">加载中...</div>
-            </div>
-          )}
+          {loading && <TalkLoading />}
           <div 
             ref={talkContainerRef} 
             id="talk" 
             className={cn("talk-pending", {
               'opacity-100': !loading,
-              'opacity-70': loading
+              'hidden': loading
             })}
           ></div>
         </div>
