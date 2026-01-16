@@ -32,13 +32,13 @@ export const DISCONNECTED_LEVEL: FriendLevel = {
   level: 0,
   title: "失联",
   days: 0,
-  color: "text-red-700 dark:text-red-300",
-  border: "border-red-300 dark:border-red-700",
-  theme: "text-red-700 dark:text-red-300",
+  color: "text-teal-700 dark:text-teal-300",
+  border: "border-teal-300 dark:border-teal-700",
+  theme: "text-teal-700 dark:text-teal-300",
   Icon: Ghost
 };
 
-// 15级友链等级配置 - 统一使用红色系配色
+// 15级友链等级配置 - 统一使用青绿色系配色
 export const FRIEND_LEVELS: FriendLevel[] = [
   {
     level: 1,

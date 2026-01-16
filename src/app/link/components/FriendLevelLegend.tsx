@@ -6,21 +6,21 @@ const FriendLevelLegend: React.FC = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <div className="w-full bg-white dark:bg-white/5 rounded-xl border border-amber-400 overflow-hidden mb-8 transition-all duration-300">
+        <div className="w-full bg-white dark:bg-white/5 rounded-xl border border-teal-400 overflow-hidden mb-8 transition-all duration-300">
             <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-amber-50 dark:hover:bg-amber-500/10 transition-colors cursor-pointer group"
+                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-colors cursor-pointer group"
             >
-                <h3 className="text-lg font-bold text-amber-500 flex items-center gap-2">
-                    <Info size={20} className="text-amber-500 group-hover:text-amber-600 transition-colors" />
+                <h3 className="text-lg font-bold text-teal-500 flex items-center gap-2">
+                    <Info size={20} className="text-teal-500 group-hover:text-teal-600 transition-colors" />
                     友链印记说明
                 </h3>
-                <div className="text-amber-500 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                <div className="text-teal-500 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                     {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </div>
             </button>
 
-            <div className={`grid transition-all duration-300 ease-in-out ${isExpanded ? 'grid-rows-[1fr] opacity-100 p-6 pt-0 border-t border-amber-400' : 'grid-rows-[0fr] opacity-0 px-6 py-0'}`}>
+            <div className={`grid transition-all duration-300 ease-in-out ${isExpanded ? 'grid-rows-[1fr] opacity-100 p-6 pt-0 border-t border-teal-400' : 'grid-rows-[0fr] opacity-0 px-6 py-0'}`}>
                 <div className="overflow-hidden">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 pt-4">
                         {FRIEND_LEVELS.map((level, index) => {
@@ -29,15 +29,15 @@ const FriendLevelLegend: React.FC = () => {
                             const dayRange = isLast ? `${level.days}天+` : `${prevDays}-${level.days}天`;
                             
                             return (
-                                <div key={level.level} className="flex items-center gap-2 p-2 rounded-lg border border-transparent hover:bg-amber-50 dark:hover:bg-amber-500/10 transition-colors cursor-default">
-                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-amber-50 dark:bg-amber-500/20 ${level.theme}`}>
+                                <div key={level.level}<div className="flex items-center gap-2 p-2 rounded-lg border border-transparent hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-colors cursor-default">
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-teal-50 dark:bg-teal-500/20 ${level.theme}`}>
                                         <level.Icon size={16} />
                                     </div>
                                     <div className="flex flex-col cursor-default">
                                         <span className={`text-xs font-bold ${level.theme} cursor-default`}>
                                             {level.title}
                                         </span>
-                                        <span className="text-[10px] text-amber-500 cursor-default">
+                                        <span className="text-[10px] text-teal-500 cursor-default">
                                             {dayRange}
                                         </span>
                                     </div>

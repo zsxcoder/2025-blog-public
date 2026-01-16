@@ -19,8 +19,8 @@ export default function Page() {
         <div className="animate-in fade-in slide-in-from-bottom-8 duration-500">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-3xl sm:text-4xl font-bold text-amber-500 font-serif mb-4">友情链接</h1>
-            <p className="text-lg text-amber-500 font-serif italic">
+            <h1 className="text-3xl sm:text-4xl font-bold text-teal-500 font-serif mb-4">友情链接</h1>
+            <p className="text-lg text-teal-500 font-serif italic">
               探索更多优秀的内容创作者和技术伙伴。
             </p>
           </div>
@@ -43,25 +43,25 @@ export default function Page() {
           {/* Apply Section - Redesigned */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {/* 申请友链 */}
-            <div className="rounded-2xl bg-slate-50 dark:bg-white/5 border border-amber-400 p-6">
+            <div className="rounded-2xl bg-slate-50 dark:bg-white/5 border border-teal-400 p-6">
               <div className="flex items-center gap-2 mb-4">
-                <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                 </svg>
-                <h3 className="text-lg font-bold text-amber-500">申请友链</h3>
+                <h3 className="text-lg font-bold text-teal-500">申请友链</h3>
               </div>
-              <p className="text-sm text-amber-500 mb-4">
+              <p className="text-sm text-teal-500 mb-4">
                 欢迎技术与生活类博客交换友链
               </p>
-              <p className="text-sm text-amber-500 mb-4">
-                评论区留言或请发送邮件至 <a href={`mailto:${FRIEND_LINK_CONTACT.email}`} className="text-amber-500 hover:underline">{FRIEND_LINK_CONTACT.email}</a>
+              <p className="text-sm text-teal-500 mb-4">
+                评论区留言或请发送邮件至 <a href={`mailto:${FRIEND_LINK_CONTACT.email}`} className="text-teal-500 hover:underline">{FRIEND_LINK_CONTACT.email}</a>
               </p>
               {/* 提示信息框 */}
-              <div className="rounded-lg border-2 border-dashed border-amber-500/30 dark:border-amber-500/30 bg-amber-500/5 dark:bg-amber-500/10 p-4 text-center">
-                <p className="text-sm text-amber-500 font-medium mb-1">
+              <div className="rounded-lg border-2 border-dashed border-teal-500/30 dark:border-teal-500/30 bg-teal-500/5 dark:bg-teal-500/10 p-4 text-center">
+                <p className="text-sm text-teal-500 font-medium mb-1">
                   博客名称、描述、地址、头像等信息
                 </p>
-                <p className="text-xs text-amber-500">
+                <p className="text-xs text-teal-500">
                   任意格式均可,包含基本信息即可
                 </p>
               </div>
