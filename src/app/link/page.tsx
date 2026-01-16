@@ -6,8 +6,9 @@ import FriendLevelLegend from './components/FriendLevelLegend'
 import DisconnectedFriendsList from './components/DisconnectedFriendsList'
 import SiteInfo from './components/SiteInfo'
 import ErrorBoundary from './components/ErrorBoundary'
+import FriendCircle from './components/FriendCircle'
 import { FRIEND_LINKS } from './friends'
-import { BLOG_NAME, FRIEND_LINK_CONTACT } from '@/config/site-content.json'
+import { FRIEND_LINK_CONTACT } from '@/config/site-content.json'
 import { useRouter } from 'next/navigation'
 
 export default function Page() {
@@ -38,6 +39,11 @@ export default function Page() {
           {/* Disconnected Friends List */}
           <ErrorBoundary>
             <DisconnectedFriendsList links={FRIEND_LINKS} />
+          </ErrorBoundary>
+
+          {/* Friend Circle */}
+          <ErrorBoundary>
+            <FriendCircle />
           </ErrorBoundary>
 
           {/* Apply Section - Redesigned */}
