@@ -18,6 +18,7 @@ import ShareOutlineSVG from '@/svgs/share-outline.svg'
 import WebsiteFilledSVG from '@/svgs/website-filled.svg'
 import WebsiteOutlineSVG from '@/svgs/website-outline.svg'
 import linkSVG from '@/svgs/link.svg'
+import DotsSVG from '@/svgs/dots.svg'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { cn } from '@/lib/utils'
@@ -60,7 +61,7 @@ const list = [
 		icon: linkSVG,
 		iconActive: linkSVG,
 		label: '外部链接',
-		href: '/links'
+		href: '/link'
 	}
 ]
 
@@ -75,6 +76,7 @@ export default function NavCard() {
 	const { siteContent, cardStyles } = useConfigStore()
 	const styles = cardStyles.navCard
 	const hiCardStyles = cardStyles.hiCard
+	const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false)
 
 	const activeIndex = useMemo(() => {
 		const index = list.findIndex(item => pathname === item.href)
@@ -109,7 +111,7 @@ export default function NavCard() {
 
 	const size = useMemo(() => {
 		if (form === 'mini') return { width: 64, height: 64 }
-		else if (form === 'icons') return { width: 340, height: 64 }
+		else if (form === 'icons') return { width: 420, height: 64 }
 		else return { width: styles.width, height: styles.height }
 	}, [form, styles])
 
@@ -124,6 +126,11 @@ export default function NavCard() {
 
 	if (maxSM) position = { x: center.x - size.width / 2, y: 16 }
 
+	// 分割导航链接，前5个直接显示，其余通过展开按钮显示
+	const visibleLinks = list.slice(0, 5)
+	const moreLinks = list.slice(5)
+	const hasMoreLinks = moreLinks.length > 0
+
 	if (show)
 		return (
 			<HomeDraggableLayer cardKey='navCard' x={position.x} y={position.y} width={styles.width} height={styles.height}>
@@ -133,7 +140,7 @@ export default function NavCard() {
 					height={size.height}
 					x={position.x}
 					y={position.y}
-					className={clsx(form != 'full' && 'overflow-hidden', form === 'mini' && 'p-3', form === 'icons' && 'flex items-center gap-6 p-3')}>
+					className={clsx(form != 'full' && 'overflow-hidden', form === 'mini' && 'p-3', form === 'icons' && 'flex items-center gap-2 p-3')}>
 					{form === 'full' && siteContent.enableChristmas && (
 						<>
 							<img
@@ -145,7 +152,7 @@ export default function NavCard() {
 						</>
 					)}
 
-					<Link className='flex items-center gap-3' href='/'>
+					<Link className='flex-shrink-0 flex items-center gap-3' href='/'>
 						<Image src='/images/avatar.png' alt='avatar' width={40} height={40} style={{ boxShadow: ' 0 12px 20px -5px #E2D9CE' }} className='rounded-full' />
 						{form === 'full' && <span className='font-averia mt-1 text-2xl leading-none font-medium'>{siteContent.meta.title}</span>}
 						{form === 'full' && <span className='text-brand mt-2 text-xs font-medium'>(开发中)</span>}
@@ -155,7 +162,7 @@ export default function NavCard() {
 						<>
 							{form !== 'icons' && <div className='text-secondary mt-6 text-sm uppercase'>General</div>}
 
-							<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-0 flex items-center gap-6 space-y-0')}>
+							<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-0 flex items-center gap-2 space-y-0')}>
 								<motion.div
 									className='absolute max-w-[230px] rounded-full border'
 									layoutId='nav-hover'
@@ -163,7 +170,7 @@ export default function NavCard() {
 									animate={
 										form === 'icons'
 											? {
-													left: hoveredIndex * (itemHeight + 24) - extraSize,
+													left: hoveredIndex * (itemHeight + 24) - extraSize + 60,
 													top: -extraSize,
 													width: itemHeight + extraSize * 2,
 													height: itemHeight + extraSize * 2
@@ -178,18 +185,52 @@ export default function NavCard() {
 									style={{ backgroundImage: 'linear-gradient(to right bottom, var(--color-border) 60%, var(--color-card) 100%)' }}
 								/>
 
-								{list.map((item, index) => (
+								{/* 显示前5个导航链接 */}
+								{visibleLinks.map((item, index) => (
 									<Link
 										key={item.href}
 										href={item.href}
 										className={cn('text-secondary text-md relative z-10 flex items-center gap-3 rounded-full px-5 py-3', form === 'icons' && 'p-0')}
-										onMouseEnter={() => setHoveredIndex(index)}>
+										onMouseEnter={() => setHoveredIndex(index)}
+									>
 										<div className='flex h-7 w-7 items-center justify-center'>
 											{hoveredIndex == index ? <item.iconActive className='text-brand absolute h-7 w-7' /> : <item.icon className='absolute h-7 w-7' />}
 										</div>
 										{form !== 'icons' && <span className={clsx(index == hoveredIndex && 'text-primary font-medium')}>{item.label}</span>}
 									</Link>
 								))}
+
+								{/* 更多链接按钮 */}
+								{hasMoreLinks && (
+									<div className="relative">
+										<button
+											className={cn('text-secondary text-md relative z-10 flex items-center gap-3 rounded-full px-5 py-3', form === 'icons' && 'p-0')}
+											onMouseEnter={() => setHoveredIndex(visibleLinks.length)}
+											onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+										>
+											<div className='flex h-7 w-7 items-center justify-center'>
+										<DotsSVG className='absolute h-7 w-7' />
+									</div>
+											{form !== 'icons' && <span className={clsx(hoveredIndex == visibleLinks.length && 'text-primary font-medium')}>更多</span>}
+										</button>
+
+										{isMoreMenuOpen && (
+											<div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-50">
+											{moreLinks.map((item, index) => (
+												<Link
+													key={item.href}
+													href={item.href}
+													className="flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
+													onClick={() => setIsMoreMenuOpen(false)}
+												>
+													<item.icon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+													<span className="text-gray-700 dark:text-gray-300">{item.label}</span>
+												</Link>
+											))}
+											</div>
+										)}
+									</div>
+								)}
 							</div>
 						</>
 					)}
