@@ -10,6 +10,7 @@ import FriendCircle from './components/FriendCircle'
 import { FRIEND_LINKS } from './friends'
 import { FRIEND_LINK_CONTACT } from '@/config/site-content.json'
 import { useRouter } from 'next/navigation'
+import { GiscusComments } from '@/components/giscus-comments'
 
 export default function Page() {
   const router = useRouter()
@@ -81,6 +82,11 @@ export default function Page() {
               avatar={FRIEND_LINK_CONTACT.avatar}
             />
           </div>
+
+          {/* Giscus Comments */}
+          <ErrorBoundary>
+            <GiscusComments className="mt-16" />
+          </ErrorBoundary>
         </div>
       </main>
     </div>

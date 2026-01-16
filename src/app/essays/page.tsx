@@ -7,6 +7,7 @@ import { useConfigStore } from '@/app/(home)/stores/config-store'
 import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
 import { TalkLoading } from './components/TalkLoading'
+import { GiscusComments } from '@/components/giscus-comments'
 
 export default function EssaysPage() {
   const { siteContent } = useConfigStore()
@@ -455,6 +456,9 @@ export default function EssaysPage() {
             })}
           ></div>
         </div>
+
+        {/* Giscus Comments */}
+        <GiscusComments className="mt-12" />
       </div>
 
       {/* 灯箱组件 */}

@@ -6,6 +6,7 @@ import { useMarkdownRender } from '@/hooks/use-markdown-render'
 import { useSize } from '@/hooks/use-size'
 import { BlogSidebar } from '@/components/blog-sidebar'
 import { useConfigStore } from '@/app/(home)/stores/config-store'
+import { GiscusComments } from '@/components/giscus-comments'
 
 type BlogPreviewProps = {
 	markdown: string
@@ -47,9 +48,12 @@ export function BlogPreview({ markdown, title, tags, date, summary, cover, slug 
 
 					{summary && summaryInContent && <div className='text-secondary mt-6 cursor-text text-center text-sm'>“{summary}”</div>}
 
-					<div className='prose mt-6 max-w-none cursor-text'>{content}</div>
-				</div>
-			</motion.article>
+				<div className='prose mt-6 max-w-none cursor-text'>{content}</div>
+
+				{/* Giscus Comments */}
+				<GiscusComments className='mt-12' />
+			</div>
+		</motion.article>
 
 			{!isMobile && <BlogSidebar cover={cover} summary={summary} toc={toc} slug={slug} />}
 		</div>

@@ -9,6 +9,7 @@ import { useAuthStore } from '@/hooks/use-auth'
 import { useConfigStore } from '@/app/(home)/stores/config-store'
 import LikeButton from '@/components/like-button'
 import GithubSVG from '@/svgs/github.svg'
+import { GiscusComments } from '@/components/giscus-comments'
 import initialData from './list.json'
 
 export default function Page() {
@@ -181,6 +182,9 @@ export default function Page() {
 
 						<LikeButton slug='open-source' delay={0} />
 					</div>
+
+					{/* Giscus Comments */}
+					<GiscusComments className='mt-12' />
 				</div>
 			</div>
 
