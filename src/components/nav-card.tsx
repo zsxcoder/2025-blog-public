@@ -7,16 +7,20 @@ import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 import { useCenterStore } from '@/hooks/use-center'
 import { CARD_SPACING } from '@/consts'
-import ScrollOutlineSVG from '@/svgs/scroll-outline.svg'
-import ScrollFilledSVG from '@/svgs/scroll-filled.svg'
+// import ScrollOutlineSVG from '@/svgs/scroll-outline.svg'
+// import ScrollFilledSVG from '@/svgs/scroll-filled.svg'
+import BloglineSVG from '@/svgs/blog-line.svg'
 import ProjectsFilledSVG from '@/svgs/projects-filled.svg'
 import ProjectsOutlineSVG from '@/svgs/projects-outline.svg'
-import AboutFilledSVG from '@/svgs/about-filled.svg'
-import AboutOutlineSVG from '@/svgs/about-outline.svg'
+// import AboutFilledSVG from '@/svgs/about-filled.svg'
+// import AboutOutlineSVG from '@/svgs/about-outline.svg'
+import AboutfillSVG from '@/svgs/about-fill.svg'
+import AboutlineSVG from '@/svgs/about-line.svg'
 import ShareFilledSVG from '@/svgs/share-filled.svg'
+import BlogfillSVG from '@/svgs/blog-fill.svg'
 import ShareOutlineSVG from '@/svgs/share-outline.svg'
-import WebsiteFilledSVG from '@/svgs/website-filled.svg'
-import WebsiteOutlineSVG from '@/svgs/website-outline.svg'
+// import WebsiteFilledSVG from '@/svgs/website-filled.svg'
+// import WebsiteOutlineSVG from '@/svgs/website-outline.svg'
 import linkSVG from '@/svgs/link.svg'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
@@ -27,41 +31,35 @@ import { HomeDraggableLayer } from '@/app/(home)/home-draggable-layer'
 
 const list = [
 	{
-		icon: ScrollOutlineSVG,
-		iconActive: ScrollFilledSVG,
+		icon: BloglineSVG,
+		iconActive: BlogfillSVG,
 		label: '近期文章',
 		href: '/blog'
+    },
+	{
+		icon: linkSVG,
+		iconActive: linkSVG,
+		label: '友情链接',
+		href: '/link'
 	},
+	{
+		icon: AboutlineSVG,
+		iconActive: AboutfillSVG,
+		label: '关于网站',
+		href: '/about'
+	},
+	// {
+	// 	icon: ShareOutlineSVG,
+	// 	iconActive: ShareFilledSVG,
+	// 	label: '推荐分享',
+	// 	href: '/share'
+	// },
 	{
 		icon: ProjectsOutlineSVG,
 		iconActive: ProjectsFilledSVG,
 		label: '我的项目',
 		href: '/projects'
 	},
-	{
-		icon: AboutOutlineSVG,
-		iconActive: AboutFilledSVG,
-		label: '关于网站',
-		href: '/about'
-	},
-	{
-		icon: ShareOutlineSVG,
-		iconActive: ShareFilledSVG,
-		label: '推荐分享',
-		href: '/share'
-	},
-	{
-		icon: WebsiteOutlineSVG,
-		iconActive: WebsiteFilledSVG,
-		label: '优秀博客',
-		href: '/bloggers'
-	},
-	{
-		icon: linkSVG,
-		iconActive: linkSVG,
-		label: '外部链接',
-		href: '/links'
-	}
 ]
 
 const extraSize = 8
@@ -72,7 +70,6 @@ export default function NavCard() {
 	const [show, setShow] = useState(false)
 	const { maxSM } = useSize()
 	const [hoveredIndex, setHoveredIndex] = useState<number>(0)
-	const [expanded, setExpanded] = useState(false)
 	const { siteContent, cardStyles } = useConfigStore()
 	const styles = cardStyles.navCard
 	const hiCardStyles = cardStyles.hiCard
@@ -125,11 +122,6 @@ export default function NavCard() {
 
 	if (maxSM) position = { x: center.x - size.width / 2, y: 16 }
 
-	// 将导航链接分为主要链接（前5个）和次要链接
-	const mainLinks = list.slice(0, 5)
-	const secondaryLinks = list.slice(5)
-	const hasSecondaryLinks = secondaryLinks.length > 0
-
 	if (show)
 		return (
 			<HomeDraggableLayer cardKey='navCard' x={position.x} y={position.y} width={styles.width} height={styles.height}>
@@ -139,7 +131,7 @@ export default function NavCard() {
 					height={size.height}
 					x={position.x}
 					y={position.y}
-					className={clsx(form != 'full' && 'overflow-hidden', form === 'mini' && 'p-3', form === 'icons' && 'flex items-center gap-2 p-3')}>
+					className={clsx(form != 'full' && 'overflow-hidden', form === 'mini' && 'p-3', form === 'icons' && 'flex items-center gap-6 p-3')}>
 					{form === 'full' && siteContent.enableChristmas && (
 						<>
 							<img
@@ -151,8 +143,7 @@ export default function NavCard() {
 						</>
 					)}
 
-					{/* 头像始终显示 */}
-					<Link className='flex items-center gap-3 z-10' href='/'>
+					<Link className='flex items-center gap-3' href='/'>
 						<Image src='/images/avatar.png' alt='avatar' width={40} height={40} style={{ boxShadow: ' 0 12px 20px -5px #E2D9CE' }} className='rounded-full' />
 						{form === 'full' && <span className='font-averia mt-1 text-2xl leading-none font-medium'>{siteContent.meta.title}</span>}
 						{form === 'full' && <span className='text-brand mt-2 text-xs font-medium'>(开发中)</span>}
@@ -162,7 +153,7 @@ export default function NavCard() {
 						<>
 							{form !== 'icons' && <div className='text-secondary mt-6 text-sm uppercase'>General</div>}
 
-							<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-0 flex items-center gap-2 space-y-0')}>
+							<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-0 flex items-center gap-6 space-y-0')}>
 								<motion.div
 									className='absolute max-w-[230px] rounded-full border'
 									layoutId='nav-hover'
@@ -170,7 +161,7 @@ export default function NavCard() {
 									animate={
 										form === 'icons'
 											? {
-													left: hoveredIndex * (itemHeight + 20) - extraSize,
+													left: hoveredIndex * (itemHeight + 24) - extraSize,
 													top: -extraSize,
 													width: itemHeight + extraSize * 2,
 													height: itemHeight + extraSize * 2
@@ -185,8 +176,7 @@ export default function NavCard() {
 									style={{ backgroundImage: 'linear-gradient(to right bottom, var(--color-border) 60%, var(--color-card) 100%)' }}
 								/>
 
-								{/* 渲染主要链接 */}
-								{mainLinks.map((item, index) => (
+								{list.map((item, index) => (
 									<Link
 										key={item.href}
 										href={item.href}
@@ -198,43 +188,7 @@ export default function NavCard() {
 										{form !== 'icons' && <span className={clsx(index == hoveredIndex && 'text-primary font-medium')}>{item.label}</span>}
 									</Link>
 								))}
-
-								{/* 展开/折叠按钮 */}
-								{hasSecondaryLinks && (
-									<Link
-										href='#'
-										className={cn('text-secondary text-md relative z-10 flex items-center gap-3 rounded-full px-5 py-3', form === 'icons' && 'p-0')}
-										onMouseEnter={() => setHoveredIndex(mainLinks.length)}
-										onClick={(e) => {
-											e.preventDefault()
-											setExpanded(!expanded)
-										}}>
-										<div className='flex h-7 w-7 items-center justify-center'>
-											{/* 使用分享图标作为展开/折叠按钮 */}
-											<ShareOutlineSVG className='text-brand absolute h-7 w-7' />
-										</div>
-										{form !== 'icons' && <span className={clsx(hoveredIndex == mainLinks.length && 'text-primary font-medium')}>{expanded ? '收起' : '展开'}</span>}
-									</Link>
-								)}
 							</div>
-
-							{/* 展开的次要链接 */}
-							{expanded && hasSecondaryLinks && (
-								<div className={cn('relative mt-2 space-y-2', form === 'icons' && 'mt-3 flex items-center gap-6 space-y-0')}>
-									{secondaryLinks.map((item, index) => (
-										<Link
-											key={item.href}
-											href={item.href}
-											className={cn('text-secondary text-md relative z-10 flex items-center gap-3 rounded-full px-5 py-3', form === 'icons' && 'p-0')}
-											onMouseEnter={() => setHoveredIndex(mainLinks.length + 1 + index)}>
-											<div className='flex h-7 w-7 items-center justify-center'>
-												<item.icon className='absolute h-7 w-7' />
-											</div>
-											{form !== 'icons' && <span className={clsx('text-primary font-medium')}>{item.label}</span>}
-										</Link>
-									))}
-								</div>
-							)}
 						</>
 					)}
 				</Card>
