@@ -7,8 +7,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 import { useCenterStore } from '@/hooks/use-center'
 import { CARD_SPACING } from '@/consts'
-// import ScrollOutlineSVG from '@/svgs/scroll-outline.svg'
-// import ScrollFilledSVG from '@/svgs/scroll-filled.svg'
+import ScrollOutlineSVG from '@/svgs/scroll-outline.svg'
+import ScrollFilledSVG from '@/svgs/scroll-filled.svg'
 import BloglineSVG from '@/svgs/blog-line.svg'
 import ProjectsFilledSVG from '@/svgs/projects-filled.svg'
 import ProjectsOutlineSVG from '@/svgs/projects-outline.svg'
@@ -36,6 +36,12 @@ const list = [
 		label: '近期文章',
 		href: '/blog'
     },
+	{
+		icon: ScrollOutlineSVG,
+		iconActive: ScrollFilledSVG,
+		label: '即刻短文',
+		href: '/essays'
+	},
 	{
 		icon: linkSVG,
 		iconActive: linkSVG,
