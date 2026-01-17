@@ -18,7 +18,7 @@ function debounce(fn: Function, waitMs = 60) {
   }
 }
 
-// 瀑布流布局函数 - 强制三行
+// 瀑布流布局函数 - 自适应列数
 function waterfallLayout(container: HTMLElement) {
   if (!container) return
   
@@ -31,9 +31,15 @@ function waterfallLayout(container: HTMLElement) {
     htmlItem.style.position = 'absolute'
   })
 
-  // 强制使用三列布局
-  const columns = 3
+  // 根据屏幕宽度自适应调整列数
   const containerWidth = container.clientWidth
+  let columns = 3
+  if (containerWidth < 640) { // 小屏幕手机
+    columns = 1
+  } else if (containerWidth < 1024) { // 平板
+    columns = 2
+  }
+  
   const gap = 12 // 间距
   const columnWidth = (containerWidth - (columns - 1) * gap) / columns
   

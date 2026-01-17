@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useCallback } from 'react'
+import { useRef, useCallback, useEffect } from 'react'
 import { useCenterStore } from '@/hooks/use-center'
 import { useLayoutEditStore } from './stores/layout-edit-store'
 import type { CardStyles } from './stores/config-store'
@@ -52,6 +52,27 @@ export function HomeDraggableLayer({ cardKey, x, y, width, height, children }: H
 		initialWidth: 0,
 		initialHeight: 0
 	})
+
+	// 组件卸载时清理所有事件监听器
+	useEffect(() => {
+		return () => {
+			// 清理拖拽相关事件监听器
+			dragStateRef.current.dragging = false
+			window.removeEventListener('mousemove', handleMouseMove)
+			window.removeEventListener('mouseup', handleEnd)
+			window.removeEventListener('touchmove', handleTouchMove)
+			window.removeEventListener('touchend', handleEnd)
+			window.removeEventListener('touchcancel', handleEnd)
+
+			// 清理调整大小相关事件监听器
+			resizeStateRef.current.resizing = false
+			window.removeEventListener('mousemove', handleResizeMouseMove)
+			window.removeEventListener('mouseup', handleResizeEnd)
+			window.removeEventListener('touchmove', handleResizeTouchMove)
+			window.removeEventListener('touchend', handleResizeEnd)
+			window.removeEventListener('touchcancel', handleResizeEnd)
+		}
+	}, [handleMouseMove, handleEnd, handleTouchMove, handleResizeMouseMove, handleResizeEnd, handleResizeTouchMove])
 
 	const handleMouseMove = useCallback(
 		(event: MouseEvent) => {
