@@ -31,7 +31,7 @@ export function GiscusComments({ className = '' }: GiscusCommentsProps) {
     script.setAttribute('data-reactions-enabled', '1')
     script.setAttribute('data-emit-metadata', '0')
     script.setAttribute('data-input-position', 'top')
-    script.setAttribute('data-theme', 'preferred_color_scheme')
+    script.setAttribute('data-theme', 'light')
     script.setAttribute('data-lang', 'zh-CN')
     script.setAttribute('data-loading', 'lazy')
     script.setAttribute('crossorigin', 'anonymous')
@@ -49,13 +49,7 @@ export function GiscusComments({ className = '' }: GiscusCommentsProps) {
   }, [])
   
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: INIT_DELAY + 0.3 }}
-      ref={giscusRef}
-      className={`mt-12 ${className}`}
-    >
+    <div ref={giscusRef} className={className}>
       <div className="giscus" data-repo="zsxcoder/giscus-comments" 
            data-repo-id="R_kgDOQoZP0g" 
            data-category="blog-public" 
@@ -65,9 +59,9 @@ export function GiscusComments({ className = '' }: GiscusCommentsProps) {
            data-reactions-enabled="1" 
            data-emit-metadata="0" 
            data-input-position="top" 
-           data-theme="preferred_color_scheme" 
+           data-theme="light" 
            data-lang="zh-CN" 
            data-loading="lazy"></div>
-    </motion.div>
+    </div>
   )
 }

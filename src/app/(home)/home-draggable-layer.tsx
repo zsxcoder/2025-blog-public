@@ -55,24 +55,21 @@ export function HomeDraggableLayer({ cardKey, x, y, width, height, children }: H
 
 	// 组件卸载时清理所有事件监听器
 	useEffect(() => {
+		// 不依赖具体的回调函数，而是在每次事件添加时正确管理
 		return () => {
-			// 清理拖拽相关事件监听器
-			dragStateRef.current.dragging = false
+			// 清理所有可能的事件监听器，不管具体的回调函数引用
 			window.removeEventListener('mousemove', handleMouseMove)
 			window.removeEventListener('mouseup', handleEnd)
 			window.removeEventListener('touchmove', handleTouchMove)
 			window.removeEventListener('touchend', handleEnd)
 			window.removeEventListener('touchcancel', handleEnd)
-
-			// 清理调整大小相关事件监听器
-			resizeStateRef.current.resizing = false
 			window.removeEventListener('mousemove', handleResizeMouseMove)
 			window.removeEventListener('mouseup', handleResizeEnd)
 			window.removeEventListener('touchmove', handleResizeTouchMove)
 			window.removeEventListener('touchend', handleResizeEnd)
 			window.removeEventListener('touchcancel', handleResizeEnd)
 		}
-	}, [handleMouseMove, handleEnd, handleTouchMove, handleResizeMouseMove, handleResizeEnd, handleResizeTouchMove])
+	}, [])
 
 	const handleMouseMove = useCallback(
 		(event: MouseEvent) => {
@@ -184,17 +181,21 @@ export function HomeDraggableLayer({ cardKey, x, y, width, height, children }: H
 	)
 
 	const handleResizeMouseDown: React.MouseEventHandler<HTMLDivElement> = event => {
-		event.preventDefault()
-		event.stopPropagation()
-		startResize(event.clientX, event.clientY)
+		if (editing) {
+			event.preventDefault()
+			event.stopPropagation()
+			startResize(event.clientX, event.clientY)
+		}
 	}
 
 	const handleResizeTouchStart: React.TouchEventHandler<HTMLDivElement> = event => {
 		const touch = event.touches[0]
 		if (!touch) return
-		event.preventDefault()
-		event.stopPropagation()
-		startResize(touch.clientX, touch.clientY)
+		if (editing) {
+			event.preventDefault()
+			event.stopPropagation()
+			startResize(touch.clientX, touch.clientY)
+		}
 	}
 
 	const startDrag = useCallback(
@@ -222,14 +223,18 @@ export function HomeDraggableLayer({ cardKey, x, y, width, height, children }: H
 	)
 
 	const handleMouseDown: React.MouseEventHandler<HTMLDivElement> = event => {
-		event.preventDefault()
-		startDrag(event.clientX, event.clientY)
+		if (editing) {
+			event.preventDefault()
+			startDrag(event.clientX, event.clientY)
+		}
 	}
 
 	const handleTouchStart: React.TouchEventHandler<HTMLDivElement> = event => {
 		const touch = event.touches[0]
 		if (!touch) return
-		startDrag(touch.clientX, touch.clientY)
+		if (editing) {
+			startDrag(touch.clientX, touch.clientY)
+		}
 	}
 
 	const canResize = editing && width !== undefined && height !== undefined
