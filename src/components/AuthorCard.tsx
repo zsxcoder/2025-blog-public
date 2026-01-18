@@ -1,26 +1,26 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Copyright, Github, Mail, MapPin, Globe, Link as LinkIcon, User, Cake, Check, Briefcase, Twitter, Linkedin, Code2, Terminal, Cpu, Compass } from 'lucide-react';
+import { Copyright, Github, Mail, MapPin, Globe, Link as LinkIcon, User, Cake, Check, Briefcase, Twitter, Linkedin, Code2, Terminal, Cpu, Compass, Send, MessageCircle } from 'lucide-react';
 
 // 模拟配置数据 - 复刻自原仓库
 const AUTHOR_PROFILE = {
   name: '钟神秀',
   avatar: 'https://home.zsxcoder.top/api/avatar.png',
-  role: '全栈开发者',
-  location: '北京, 中国',
-  blogContent: '热爱技术，喜欢分享。专注于前端开发、后端架构和云原生技术。',
-  birthYear: 1990,
-  mbti: 'INTJ',
-  locationDescription: '中国的首都，科技与文化的中心',
+  role: '博客写作者',
+  location: '江苏, 中国',
+  blogContent: '在这个博客分享我的生活日常、踩坑教程和资源分享。',
+  birthYear: 2005,
+  mbti: 'INFJ',
+  locationDescription: '是中国古代文明的发祥地之一，文化及教育事业亦相当发达。',
   locationPatterns: {
     show: true,
     opacity: 0.15
   },
   skills: {
     programmingLanguages: ['JavaScript', 'TypeScript', 'Python', 'Go'],
-    frameworks: ['Next.js', 'React', 'Nest.js', 'Django'],
-    tools: ['Git', 'Docker', 'Kubernetes', 'AWS']
+    frameworks: ['Next.js', 'React', 'Nest.js', 'Astro'],
+    tools: ['Git', 'Docker', 'Vercel', 'Cloudflare']
   },
   socialLinks: [
     {
@@ -30,15 +30,25 @@ const AUTHOR_PROFILE = {
     },
     {
       name: 'email',
-      url: 'mailto:example@example.com',
+      url: 'mailto:3149261770@qq.com',
       icon: 'Mail'
-    }
+      },
+    {
+      name: 'Telegram',
+      url: 'https://t.me/zsxcoderchat_bat',
+      icon: 'Send'
+      }, 
+    {
+      name: 'QQ',
+      url: 'https://qm.qq.com/q/eLZhXoSonY',
+      icon: 'MessageCircle'
+      },    
   ]
 };
 
 const LICENSE_CONFIG = {
   enable: true,
-  text: '© 2025 钟神秀. 保留所有权利。',
+  text: '© 2026 钟神秀. 保留所有权利。',
   showOriginalBadge: true
 };
 
@@ -46,6 +56,8 @@ const LICENSE_CONFIG = {
 const lucideIconMap: Record<string, any> = {
   Github,
   Mail,
+    Send,
+  MessageCircle,
 };
 
 // 渲染图标组件
