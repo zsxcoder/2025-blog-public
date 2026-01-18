@@ -37,6 +37,19 @@
     "category": "技术分享"
   },
   {
+    "slug": "markdown-huanhang",
+    "title": "Markdown 换行语法",
+    "tags": [
+      "Markdown",
+      "换行语法"
+    ],
+    "date": "2025-06-28T22:28",
+    "summary": "Markdown 换行：行末两空格+回车或直接用`<br>`最兼容；反斜杠或裸回车易失效，不推荐。",
+    "cover": "/blogs/markdown-huanhang/77dab2ee5d1d2aa4.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
     "slug": "zyfx-drop",
     "title": "资源分享：DROP",
     "tags": [
