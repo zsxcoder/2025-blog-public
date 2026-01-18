@@ -172,11 +172,13 @@ export default function AuthorCard({ className = '', title, showLicense = false,
     <div className={`relative w-full flex flex-col md:flex-row items-stretch gap-0 shadow-xl
         group ${className}`}
         style={{
-            background: 'linear-gradient(135deg, #d3bc8e 0%, #a38753 50%, #d3bc8e 100%)',
+            background: 'linear-gradient(135deg, rgba(211, 188, 142, 0.3) 0%, rgba(163, 135, 83, 0.3) 50%, rgba(211, 188, 142, 0.3) 100%)',
+            backdropFilter: 'blur-md',
             padding: '2px',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
         }}>
         {/* 内容容器 */}
-        <div className="relative w-full flex flex-col md:flex-row items-stretch gap-0 bg-gradient-to-r from-white to-slate-50">
+        <div className="relative w-full flex flex-col md:flex-row items-stretch gap-0 bg-gradient-to-r from-white/80 to-slate-50/80 backdrop-blur-md border border-white/20">
             {/* 边框装饰层 */}
             <div className="absolute inset-0 pointer-events-none z-[1]">
                 {/* 四角装饰 - 更大的装饰角 */}
@@ -199,7 +201,7 @@ export default function AuthorCard({ className = '', title, showLicense = false,
             </div>
 
             {/* Left Decor / Avatar Section */}
-            <div className="relative md:w-64 shrink-0 bg-[#f9fafb]/80 flex flex-col items-center justify-between pt-8 px-8 pb-4 border-b md:border-b-0 md:border-r border-[#d3bc8e]/20 z-10 group/pisces">
+            <div className="relative md:w-64 shrink-0 bg-[#f9fafb]/60 backdrop-blur-md flex flex-col items-center justify-between pt-8 px-8 pb-4 border-b md:border-b-0 md:border-r border-white/20 z-10 group/pisces">
                 {/* Leo Constellation Pattern as Background - Genshin Style */}
                 <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">
                     <div className="relative w-full h-full max-w-[280px] max-h-[280px] opacity-25">
@@ -280,8 +282,8 @@ export default function AuthorCard({ className = '', title, showLicense = false,
                             <div className="absolute inset-0 bg-gradient-to-r from-[#d3bc8e]/20 via-[#a38753]/20 to-[#d3bc8e]/20 blur-sm opacity-50 group-hover:opacity-75 transition-opacity"></div>
                             
                             {/* 主容器 */}
-                            <div className="relative bg-gradient-to-br from-white/90 to-slate-50/90 
-                                border border-[#d3bc8e]/40 
+                            <div className="relative bg-gradient-to-br from-white/70 to-slate-50/70 backdrop-blur-md
+                                border border-white/30 
                                 px-4 py-1.5 rounded-md 
                                 shadow-md shadow-[#d3bc8e]/10 
                                 group-hover:shadow-lg group-hover:shadow-[#d3bc8e]/20 
@@ -321,9 +323,9 @@ export default function AuthorCard({ className = '', title, showLicense = false,
                         <div className="w-full mt-8 z-10">
                             <div className="relative group cursor-default transition-all duration-300">
                                 {/* Card Background with ornate border illusion */}
-                                <div className="relative bg-white border border-[#e3dacd] rounded-lg p-1 shadow-sm overflow-hidden">
+                                <div className="relative bg-white/70 backdrop-blur-md border border-white/30 rounded-lg p-1 shadow-sm overflow-hidden">
                                     {/* Inner styling */}
-                                    <div className="bg-[#fdfbf7] rounded border border-[#d3bc8e]/40 p-3 relative overflow-hidden">
+                                    <div className="bg-[#fdfbf7]/80 backdrop-blur-sm rounded border border-white/40 p-3 relative overflow-hidden">
                                         
                                         {/* Decorative corners */}
                                         <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#d3bc8e]"></div>
@@ -418,7 +420,7 @@ export default function AuthorCard({ className = '', title, showLicense = false,
                                     </div>
                                     <div className="flex flex-wrap gap-1.5">
                                         {AUTHOR_PROFILE.skills.programmingLanguages.map((skill, i) => (
-                                            <span key={i} className="text-[10px] px-2 py-0.5 rounded-sm bg-slate-100 border border-transparent hover:border-[#d3bc8e]/30 text-slate-600 cursor-default transition-all hover:scale-105">
+                                            <span key={i} className="text-[10px] px-2 py-0.5 rounded-sm bg-white/70 backdrop-blur-md border border-white/30 hover:border-[#d3bc8e]/30 text-slate-600 cursor-default transition-all hover:scale-105">
                                                 {skill}
                                             </span>
                                         ))}
@@ -437,7 +439,7 @@ export default function AuthorCard({ className = '', title, showLicense = false,
                                     </div>
                                     <div className="flex flex-wrap gap-1.5">
                                         {AUTHOR_PROFILE.skills.frameworks.map((skill, i) => (
-                                            <span key={i} className="text-[10px] px-2 py-0.5 rounded-sm bg-slate-100 border border-transparent hover:border-[#d3bc8e]/30 text-slate-600 cursor-default transition-all hover:scale-105">
+                                            <span key={i} className="text-[10px] px-2 py-0.5 rounded-sm bg-white/70 backdrop-blur-md border border-white/30 hover:border-[#d3bc8e]/30 text-slate-600 cursor-default transition-all hover:scale-105">
                                                 {skill}
                                             </span>
                                         ))}
@@ -456,7 +458,7 @@ export default function AuthorCard({ className = '', title, showLicense = false,
                                     </div>
                                     <div className="flex flex-wrap gap-1.5">
                                         {AUTHOR_PROFILE.skills.tools.map((skill, i) => (
-                                            <span key={i} className="text-[10px] px-2 py-0.5 rounded-sm bg-slate-100 border border-transparent hover:border-[#d3bc8e]/30 text-slate-600 cursor-default transition-all hover:scale-105">
+                                            <span key={i} className="text-[10px] px-2 py-0.5 rounded-sm bg-white/70 backdrop-blur-md border border-white/30 hover:border-[#d3bc8e]/30 text-slate-600 cursor-default transition-all hover:scale-105">
                                                 {skill}
                                             </span>
                                         ))}
@@ -490,8 +492,8 @@ export default function AuthorCard({ className = '', title, showLicense = false,
                                         
                                         {/* 主容器 */}
                                         <div className="relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-sm
-                                            bg-gradient-to-br from-white/90 to-slate-50/90
-                                            border border-[#d3bc8e]/30
+                                            bg-gradient-to-br from-white/70 to-slate-50/70 backdrop-blur-md
+                                            border border-white/30
                                             shadow-sm shadow-[#d3bc8e]/5
                                             group-hover/btn:border-[#d3bc8e]
                                             group-hover/btn:shadow-md group-hover/btn:shadow-[#d3bc8e]/20
@@ -542,8 +544,8 @@ export default function AuthorCard({ className = '', title, showLicense = false,
                                     
                                     {/* 主容器 */}
                                     <div className="relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-sm
-                                        bg-gradient-to-br from-white/90 to-slate-50/90
-                                        border border-[#d3bc8e]/30
+                                        bg-gradient-to-br from-white/70 to-slate-50/70 backdrop-blur-md
+                                        border border-white/30
                                         shadow-sm shadow-[#d3bc8e]/5
                                         group-hover/btn:border-[#d3bc8e]
                                         group-hover/btn:shadow-md group-hover/btn:shadow-[#d3bc8e]/20
@@ -579,8 +581,8 @@ export default function AuthorCard({ className = '', title, showLicense = false,
                                     
                                     {/* 主容器 */}
                                     <div className="relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-sm
-                                        bg-gradient-to-br from-white/90 to-slate-50/90
-                                        border border-[#d3bc8e]/30
+                                        bg-gradient-to-br from-white/70 to-slate-50/70 backdrop-blur-md
+                                        border border-white/30
                                         shadow-sm shadow-[#d3bc8e]/5
                                         group-hover/btn:border-[#d3bc8e]
                                         group-hover/btn:shadow-md group-hover/btn:shadow-[#d3bc8e]/20
