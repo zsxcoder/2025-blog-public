@@ -9,5 +9,170 @@
     "summary": "测试博客",
     "hidden": false,
     "category": ""
+  },
+  {
+    "slug": "blog-v3-go",
+    "title": "给blog-v3博客加一个外链安全中转页（/go）",
+    "tags": [
+      "中转页",
+      "博客魔改"
+    ],
+    "date": "2025-12-10T12:00",
+    "summary": "Nuxt博客新增/go中转页：外链先弹倒计时安全提示，Markdown与友链统一改造，自动跳转可回退。",
+    "cover": "/blogs/blog-v3-go/7bdbb4b8b90dece0.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "hexo-beiwang1",
+    "title": "Hexo备忘",
+    "tags": [
+      "Hexo",
+      "博客魔改"
+    ],
+    "date": "2025-08-20T21:36",
+    "summary": "Hexo 7.3 全套备忘：Win11 + Node22 装 pnpm → 建私有源码仓 → GitHub Actions 自动部署 → 主题 Solitude + 10 款插件（安全跳转、PWA、Algolia、番剧等）配置一键抄。",
+    "cover": "/blogs/hexo-beiwang1/443fe05d984c1c58.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "markdown-qiangdiaoyufa",
+    "title": "Markdown 强调语法",
+    "tags": [
+      "Markdown",
+      "强调语法"
+    ],
+    "date": "2025-07-17T18:35",
+    "summary": "Markdown 强调：用 `*` 斜体、`**` 粗体、`***` 加粗斜体，中间部分只用星号最兼容。",
+    "cover": "/blogs/markdown-qiangdiaoyufa/379957d3c54ea399.png",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "markdown-huanhang",
+    "title": "Markdown 换行语法",
+    "tags": [
+      "Markdown",
+      "换行语法"
+    ],
+    "date": "2025-06-28T22:28",
+    "summary": "Markdown 换行：行末两空格+回车或直接用`<br>`最兼容；反斜杠或裸回车易失效，不推荐。",
+    "cover": "/blogs/markdown-huanhang/77dab2ee5d1d2aa4.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "zyfx-toolooz",
+    "title": "资源分享：涂鹿Toolooz",
+    "tags": [
+      "网站设计"
+    ],
+    "date": "2025-05-19T23:11",
+    "summary": "涂鹿Toolooz：在线免注册曲线文字生成器，手绘/预设路径+全样式自定义，一键导出PNG/SVG/WebP，做Logo、海报、社媒图秒出片。",
+    "cover": "/blogs/zyfx-toolooz/fd71f74b9ae1712d.png",
+    "hidden": false,
+    "category": "资源分享"
+  },
+  {
+    "slug": "telegram-music",
+    "title": "",
+    "tags": [
+      "Telegram",
+      "音乐播放器"
+    ],
+    "date": "2025-05-15T19:21",
+    "summary": "用 @music_v1bot 下歌→MT管理器正则去毫秒→贴回m4a，Telegram秒变带词无损播放器。",
+    "cover": "/blogs/telegram-music/06b1b605399c6680.jpg",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "zyfx-drop",
+    "title": "资源分享：DROP",
+    "tags": [
+      "网站托管",
+      "大文件分享"
+    ],
+    "date": "2025-05-09T21:24",
+    "summary": "DROP免费10GB云盘，AI加速上传，一键分享图片视频PDF，跨平台安全托管。",
+    "cover": "/blogs/zyfx-drop/4414141d06cd7cac.webp",
+    "hidden": false,
+    "category": "资源分享"
+  },
+  {
+    "slug": "tgtalk-deploy",
+    "title": "tgtalk免费部署",
+    "tags": [
+      "tgtalk"
+    ],
+    "date": "2025-05-04T21:01",
+    "summary": "简单部署tgtalk。",
+    "cover": "/blogs/tgtalk-deploy/bae3d35fb9aa3c72.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "umami-deploy",
+    "title": "Umami博客访问统计Vercel+Cloudflare Wokers部署",
+    "tags": [
+      "Umami",
+      "网站统计"
+    ],
+    "date": "2025-04-07T22:54",
+    "summary": "三步把 Umami 装进博客：Fork 进 Vercel 一键部署拿数据库 → Cloudflare Worker 配 Token 定时拉统计 → 前端 about 页一行配置即可实时展 UV/PV。",
+    "cover": "/blogs/umami-deploy/3a869f0179e3e749.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "git-tongbu",
+    "title": "Git 同步上游仓库的更新",
+    "tags": [
+      "git命令"
+    ],
+    "date": "2025-04-04T22:16",
+    "summary": "Git同步上游更新：添加上游remote → fetch → merge/cherry-pick → 解决冲突 → push。",
+    "cover": "/blogs/git-tongbu/a46f53e36da54745.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "markdown-duanluoyufa",
+    "title": "Markdown 段落语法",
+    "tags": [
+      "Markdown",
+      "段落语法"
+    ],
+    "date": "2025-02-13T20:41",
+    "summary": "Markdown 分段：空行隔开即可，禁止行前加空格或制表符，保持左对齐。",
+    "cover": "/blogs/markdown-duanluoyufa/0b7615b3b0a7cd1c.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "markdown-biaotiyufa",
+    "title": "Markdown-标题语法",
+    "tags": [
+      "Markdown",
+      "标题语法"
+    ],
+    "date": "2025-02-12T18:57",
+    "summary": "Markdown 标题：行首 1–6 个 # 加空格对应 h1–h6；也可在文本下用 ===/--- 表示 h1/h2，但兼容写法推荐 # 后空一格。",
+    "cover": "/blogs/markdown-biaotiyufa/468e7f9c643b503c.png",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
+    "slug": "markdown-suchabiao",
+    "title": "Markdown-速查表",
+    "tags": [
+      "Markdown"
+    ],
+    "date": "2025-02-11T18:11",
+    "summary": "一个简单的Markdown速查表",
+    "cover": "/blogs/markdown-suchabiao/f8930c7eaff57209.png",
+    "hidden": false,
+    "category": "技术分享"
   }
 ]
