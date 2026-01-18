@@ -89,6 +89,18 @@
     "category": "资源分享"
   },
   {
+    "slug": "tgtalk-deploy",
+    "title": "tgtalk免费部署",
+    "tags": [
+      "tgtalk"
+    ],
+    "date": "2025-05-04T21:01",
+    "summary": "简单部署tgtalk。",
+    "cover": "/blogs/tgtalk-deploy/bae3d35fb9aa3c72.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
     "slug": "git-tongbu",
     "title": "Git 同步上游仓库的更新",
     "tags": [
