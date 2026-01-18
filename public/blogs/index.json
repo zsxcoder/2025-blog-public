@@ -11,6 +11,19 @@
     "category": ""
   },
   {
+    "slug": "blog-v3-go",
+    "title": "给blog-v3博客加一个外链安全中转页（/go）",
+    "tags": [
+      "中转页",
+      "博客魔改"
+    ],
+    "date": "2025-12-10T12:00",
+    "summary": "Nuxt博客新增/go中转页：外链先弹倒计时安全提示，Markdown与友链统一改造，自动跳转可回退。",
+    "cover": "/blogs/blog-v3-go/7bdbb4b8b90dece0.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
     "slug": "zyfx-drop",
     "title": "资源分享：DROP",
     "tags": [
