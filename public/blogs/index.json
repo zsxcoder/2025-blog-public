@@ -76,14 +76,14 @@
   },
   {
     "slug": "markdown-biaotiyufa",
-    "title": "Markdown-标题语法",
+    "title": "Markdown 段落语法",
     "tags": [
       "Markdown",
       "标题语法"
     ],
-    "date": "2025-02-12T18:56",
-    "summary": "Markdown 标题：行首 1–6 个 # 加空格对应 h1–h6；也可在文本下用 ===/--- 表示 h1/h2，但兼容写法推荐 # 后空一格。",
-    "cover": "/blogs/markdown-biaotiyufa/468e7f9c643b503c.png",
+    "date": "2025-02-13T13:37",
+    "summary": "Markdown 分段：空行隔开即可，禁止行前加空格或制表符，保持左对齐。",
+    "cover": "/blogs/markdown-biaotiyufa/0b7615b3b0a7cd1c.webp",
     "hidden": false,
     "category": "技术分享"
   }
