@@ -101,6 +101,19 @@
     "category": "技术分享"
   },
   {
+    "slug": "umami-deploy",
+    "title": "Umami博客访问统计Vercel+Cloudflare Wokers部署",
+    "tags": [
+      "Umami",
+      "网站统计"
+    ],
+    "date": "2025-04-07T22:54",
+    "summary": "三步把 Umami 装进博客：Fork 进 Vercel 一键部署拿数据库 → Cloudflare Worker 配 Token 定时拉统计 → 前端 about 页一行配置即可实时展 UV/PV。",
+    "cover": "/blogs/umami-deploy/3a869f0179e3e749.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
     "slug": "git-tongbu",
     "title": "Git 同步上游仓库的更新",
     "tags": [
