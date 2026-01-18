@@ -22,5 +22,17 @@
     "cover": "/blogs/zyfx-drop/4414141d06cd7cac.webp",
     "hidden": false,
     "category": "资源分享"
+  },
+  {
+    "slug": "git-tongbu",
+    "title": "Git 同步上游仓库的更新",
+    "tags": [
+      "git命令"
+    ],
+    "date": "2025-04-04T22:16",
+    "summary": "Git同步上游更新：添加上游remote → fetch → merge/cherry-pick → 解决冲突 → push。",
+    "cover": "/blogs/git-tongbu/a46f53e36da54745.webp",
+    "hidden": false,
+    "category": "技术分享"
   }
 ]
