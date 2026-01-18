@@ -24,6 +24,19 @@
     "category": "技术分享"
   },
   {
+    "slug": "hexo-beiwang1",
+    "title": "Hexo备忘",
+    "tags": [
+      "Hexo",
+      "博客魔改"
+    ],
+    "date": "2025-08-20T21:36",
+    "summary": "Hexo 7.3 全套备忘：Win11 + Node22 装 pnpm → 建私有源码仓 → GitHub Actions 自动部署 → 主题 Solitude + 10 款插件（安全跳转、PWA、Algolia、番剧等）配置一键抄。",
+    "cover": "/blogs/hexo-beiwang1/443fe05d984c1c58.webp",
+    "hidden": false,
+    "category": "技术分享"
+  },
+  {
     "slug": "zyfx-drop",
     "title": "资源分享：DROP",
     "tags": [
