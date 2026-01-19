@@ -34,5 +34,17 @@
 			"Astro"
 		],
 		"github": "https://github.com/zsxcoder/astro-pure-mogai"
+	},
+	{
+		"name": "Rin-Blog",
+		"year": 2026,
+		"image": "https://cdn.jsdmirror.com/gh/zsxcoder/github-img@main/img/rin.avif",
+		"url": "https://rin.mcyzsx.top",
+		"description": "基于Cloudflare的博客自用",
+		"tags": [
+			"博客",
+			"Cloudflare"
+		],
+		"github": "https://github.com/zsxcoder/Rin"
 	}
 ]
