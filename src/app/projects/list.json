@@ -46,5 +46,17 @@
 			"Cloudflare"
 		],
 		"github": "https://github.com/zsxcoder/Rin"
+	},
+	{
+		"name": "Typecho-OneBlog",
+		"year": 2026,
+		"image": "https://weavatar.com/avatar/5e070394ebab185e00e5d079391d1f2b?s=96&d=mp&r=g",
+		"url": "https://blog.zsx815.top",
+		"description": "Typecho的Oneblog主题",
+		"tags": [
+			"博客",
+			"Oneblog"
+		],
+		"github": "https://github.com/zsxcoder/OneBlog"
 	}
 ]
