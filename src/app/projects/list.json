@@ -22,5 +22,17 @@
 			"Nuxt 4"
 		],
 		"github": "https://github.com/zsxcoder/Nuxt-blog-v3"
+	},
+	{
+		"name": "Astro-mogai",
+		"year": 2026,
+		"image": "https://cdn.jsdmirror.com/gh/zsxcoder/github-img@main/img/ljx.avif",
+		"url": "https://b.zsxcoder.top",
+		"description": "基于梨尽兴博客自用魔改",
+		"tags": [
+			"博客",
+			"Astro"
+		],
+		"github": "https://github.com/zsxcoder/astro-pure-mogai"
 	}
 ]
