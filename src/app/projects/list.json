@@ -10,5 +10,17 @@
 			"telegram"
 		],
 		"github": "https://github.com/zsxcoder/tgtalk-frontend"
+	},
+	{
+		"name": "blog--v3",
+		"year": 2025,
+		"image": "https://github.com/mcyzsx/picx-images-hosting/raw/master/links/image.8ok4l9tqge.webp",
+		"url": "https://blog.zsxcoder.top",
+		"description": "基于纸鹿的博客自用魔改",
+		"tags": [
+			"博客",
+			"Nuxt 4"
+		],
+		"github": "https://github.com/zsxcoder/Nuxt-blog-v3"
 	}
 ]
