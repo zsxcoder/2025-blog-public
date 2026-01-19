@@ -69,5 +69,17 @@
 			"介绍"
 		],
 		"github": "https://github.com/zsxcoder/homepage"
+	},
+	{
+		"name": "钟神秀的主页",
+		"year": 2026,
+		"image": "https://cdn.jsdmirror.com/gh/zsxcoder/github-img@main/img/homepage-v5.avif",
+		"url": "https://home.zsxcoder.top",
+		"description": "纸鹿的主页自用",
+		"tags": [
+			"主页",
+			"Nuxt"
+		],
+		"github": "https://github.com/zsxcoder/homepage-v5"
 	}
 ]
