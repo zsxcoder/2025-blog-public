@@ -40,7 +40,7 @@ const list = [
 		icon: ScrollOutlineSVG,
 		iconActive: ScrollFilledSVG,
 		label: '即刻短文',
-		href: '/essays'
+		href: '/moments'
 	},
 	{
 		icon: linkSVG,
